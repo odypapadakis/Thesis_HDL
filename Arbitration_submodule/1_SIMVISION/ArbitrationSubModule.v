@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ps  // <time_unit>/<time_precision>  
 
 /*
 * File			: ArbitrationSubModule.v
@@ -17,10 +17,13 @@
 
 
 
-			* 	Initially, the arbitration module isolates its processor from the buses.
+			1) 	Initially, the arbitration module isolates its processor from the buses.
 				It feeds zeroes to the inputs of the processor 
+				At this point the inputs from the Arbiter should be LOW for both Grant signals ( D_Bus_GRANT, I_Bus_GRANT).
 				
 	----PROBLEM? ( are the zeroes being fed to the buses )
+	----ANSWER	(no, the inputs from the buses are inputs to a MUX . Source :Synthesis)
+
 				And puts the tri state buffers of its outputs facing the buses at HIGH-Z.
 				Therefore the processor does not have access to the data being circulated on the bus 
 				and the bus can not be driven by the processor.
@@ -37,9 +40,10 @@
 				P_InstMem_Read
 *				
 			*	The module will then raise the appropriate signal to HIGH
-				I_Bus_RQ - For the Instruction Bus
-				D_Bus_RQ - For the Data Bus
-				To inform the arbiter, that a processor wants to use a bus
+				D_Bus_RQ - Goes HIGH to signal to the arbiter that the processor wants to use the Data Bus
+				I_Bus_RQ - Goes HIGH to signal to the arbiter that the processor wants to use the Instruction Bus
+
+			*	When the A
 
 
 			*	
@@ -148,8 +152,6 @@ module ArbitrationSubModule(
 	// Instruction Memory Interface Assignments  ---------------------------------------------------------------
 
 		//Arbitration SubModule --> Bus Arbiter
-
-			
 	  	assign I_Bus_RQ = P_InstMem_Read ; // When the processor wants an instruction, request the Instruction bus from the Bus Arbiter 
 		
 		//Arbitration SubModule --> Instruction Bus
@@ -157,31 +159,30 @@ module ArbitrationSubModule(
 	  	assign Bus_InstMem_Address 	= 	(I_Bus_GRANT) ? P_InstMem_Address		: 30'bz; // To avoid contamination of the Bus
 
 	  	//Arbitration SubModule --> Processor
-	  	
 	  	assign P_InstMem_Ready		= 	(I_Bus_GRANT) ? Bus_InstMem_Ready 		: 1'b0;	 // When Grant is LOW, Tell the processor: Instruction is not ready
-
 	  	assign P_InstMem_In 		=	(I_Bus_GRANT) ? Bus_InstMem_In			: 32'b0; // When Grant is LOW, show zeros to the processor						 
-	  	// PROBLEM  are we driving the bus to zero as well? or just the processor signals ?
-
-
+	  	
+	  	// POSSIBLE PROBLEM 
+	  	// are we driving the bus to zero as well? or just the processor signals ?
+	  	// See how it is synthesized, might need an inout port instead of input ( Bus_InstMem_In)
+	  	// If the processor signal is muxed between BuS_InstMem_In and HIGH-Z, it's fine
 
 
 	 // Data memory Interface Assignments  --------------------------------------------------------------------
 
 	 	//Arbitration SubModule --> Bus Arbiter
-	 		// When the processor wants some Data, request the Data bus from the Bus Arbiter
+	 	// When the processor wants some Data, request to use the Data bus from the Bus Arbiter
 	 	assign D_Bus_RQ = ( P_DataMem_Read | P_DataMem_Write[3] | P_DataMem_Write[2] | P_DataMem_Write[1] | P_DataMem_Write[0]);
 
-	 	//Arbitration SubModule --> Data Bus
-	 		
-	 		
-		assign Bus_DataMem_Read			= 	(D_Bus_GRANT) ? P_DataMem_Read 		: 1'bz;  // When Grant is LOW, set the signals to HIGH-Z
-		assign Bus_DataMem_Write		= 	(D_Bus_GRANT) ? P_DataMem_Write		: 4'bz;	 // To avoid contamination of the Bus
-		assign Bus_DataMem_Address		= 	(D_Bus_GRANT) ? P_DataMem_Address 	: 30'bz; // When Grant is HIGH, forward the values to the bus
-		assign Bus_DataMem_Out			= 	(D_Bus_GRANT) ? P_DataMem_Out 		: 32'bz; // 
+
+	 	//Arbitration SubModule --> Data Bus	
+		assign Bus_DataMem_Read			= 	(D_Bus_GRANT) ? P_DataMem_Read 		: 1'bz;  // When Grant is LOW, show HIGH-Z to the bus
+		assign Bus_DataMem_Write		= 	(D_Bus_GRANT) ? P_DataMem_Write		: 4'bz;	 // 
+		assign Bus_DataMem_Address		= 	(D_Bus_GRANT) ? P_DataMem_Address 	: 30'bz; //  When Grant is HIGH, pass on the values	
+		assign Bus_DataMem_Out			= 	(D_Bus_GRANT) ? P_DataMem_Out 		: 32'bz; // 	that the processsor outputs, to the bus
+
 
 	 	//Arbitration SubModule --> Processor
-	 		
 		assign P_DataMem_Ready 			=	(D_Bus_GRANT) ? Bus_DataMem_Ready	: 1'b0;  // When Grant is LOW, Tell the processor memory is not ready
 		assign P_DataMem_In 			= 	(D_Bus_GRANT) ? Bus_DataMem_In		: 32'b0; // When Grant is LOW, show zeros to the processor
 		

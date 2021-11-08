@@ -8,10 +8,43 @@
 *
 * Description: 
 *				
-*				An arbitration submodule stands between each processor and the system buses ( Data and Instruction )
-*				Its job is to either isolate the processor from the bus, or connect it to the bus
+*				An arbitration submodule stands between each processor and the system buses ( Data and Instruction ).
+				The 2 buses of the system are shared by all the arbitration modules.
+*	---DELETE	The two buses are independent of eachother and can therefore be used simultaneously.
+*				
 *
-*				The logic is the following : 
+*				The modules job  is to either isolate the processor from the bus, or connect it to the bus.
+
+
+
+			* 	Initially, the arbitration module isolates its processor from the buses.
+				It feeds zeroes to the inputs of the processor 
+				
+	----PROBLEM? ( are the zeroes being fed to the buses )
+				And puts the tri state buffers of its outputs facing the buses at HIGH-Z.
+				Therefore the processor does not have access to the data being circulated on the bus 
+				and the bus can not be driven by the processor.
+*
+*			*	When a processor want to use a BUS, it raises one of the following signals to HIGH:
+*				
+*				(  For the Data Bus )
+*				P_DataMem_Read
+*				P_DataMem_Write
+*				P_DataMem_Address
+*				P_DataMem_Out
+
+				( For the Instruction Bus )
+				P_InstMem_Read
+*				
+			*	The module will then raise the appropriate signal to HIGH
+				I_Bus_RQ - For the Instruction Bus
+				D_Bus_RQ - For the Data Bus
+				To inform the arbiter, that a processor wants to use a bus
+
+
+			*	
+
+
 *
 *				When no R/W signals are HIGH from the processor, the outputs of the module touching the Bus are set to HIGH-Z.
 *				Additionally the outputs connected to the processor are all LOW. Indicating that there is no data for the 
@@ -128,7 +161,7 @@ module ArbitrationSubModule(
 	  	assign P_InstMem_Ready		= 	(I_Bus_GRANT) ? Bus_InstMem_Ready 		: 1'b0;	 // When Grant is LOW, Tell the processor: Instruction is not ready
 
 	  	assign P_InstMem_In 		=	(I_Bus_GRANT) ? Bus_InstMem_In			: 32'b0; // When Grant is LOW, show zeros to the processor						 
-
+	  	// PROBLEM  are we driving the bus to zero as well? or just the processor signals ?
 
 
 

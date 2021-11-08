@@ -2,5 +2,5 @@ ncvlog(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-ncvlog: Memory Usage - 21.3M program + 27.4M data = 48.7M total
-ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.0s, 100.0% cpu)
+ncvlog: Memory Usage - 21.3M program + 27.9M data = 49.3M total
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 34.3% cpu)

@@ -127,7 +127,7 @@ module ArbitrationSubModule(
 	  	
 	  	assign P_InstMem_Ready		= 	(I_Bus_GRANT) ? Bus_InstMem_Ready 		: 1'b0;	 // When Grant is LOW, Tell the processor: Instruction is not ready
 
-	  	assign P_InstMem_In 		=	(I_Bus_GRANT) ? Bus_InstMem_In;			: 32'b0; // When Grant is LOW, show zeros to the processor						 
+	  	assign P_InstMem_In 		=	(I_Bus_GRANT) ? Bus_InstMem_In			: 32'b0; // When Grant is LOW, show zeros to the processor						 
 
 
 

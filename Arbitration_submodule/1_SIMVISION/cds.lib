@@ -1,2 +1,2 @@
-define worklib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/INCA_libs/worklib
+define worklib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/INCA_libs/worklib
 include $CDS_INST_DIR/tools/inca/files/cds.lib

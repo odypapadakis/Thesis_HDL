@@ -8,8 +8,8 @@
 *
 * Description: 
 *				
-*				Each processor has a module like this one, standing between the processor and the Bus.
-*				It can give access to either the Instruction or the Data bus independently.
+*				An arbitration submodule stands between each processor and the system buses ( Data and Instruction )
+*				Its job is to either isolate the processor from the bus, or connect it to the bus
 *
 *				The logic is the following : 
 *

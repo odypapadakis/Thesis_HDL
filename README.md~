@@ -21,5 +21,11 @@
 
 #### The file structure is as follows:
 * The "Verilog" Folder, contains all of the Verilog files in one place.
-* The files created by me, along with their testbenches are located in seperate folders
+* Each individual component of the design is stored additionally in a seperate subfoler ( apart from README_Images ) which is split into subfolders.
+#### 1 SIMVISION 	--> Simulation and verification for the HDL of the component
+#### 2 DC 			--> Synthesis
+#### 3 INNOVUS 		--> Placement and routing of the cells on the die
+#### 4 VIRTUOSO 		--> Final touchups and corrections of on die problems
+#### 5 ABSTRACT 		--> Macro CELL creation
 
+asdsad

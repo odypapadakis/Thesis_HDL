@@ -2,38 +2,5 @@ ncvlog(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-					#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arb_State_Wait_Mem_HIGH;
-					                                                                 |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,230|70): 'Pseudo_I_Arb_State_Wait_Mem_HIGH': undeclared identifier [12.5(IEEE)].
-		Pseudo_I_Arb_State_Wait_Mem_HIGH:
-		                               |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,236|33): 'Pseudo_I_Arb_State_Wait_Mem_HIGH': undeclared identifier [12.5(IEEE)].
-					#50 I_Arb_State = I_Arb_State_Wait_RQ_LOW  ;
-					              |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,241|19): 'I_Arb_State': undeclared identifier [12.5(IEEE)].
-					#50 I_Arb_State = I_Arb_State_Wait_RQ_LOW  ;
-					                                        |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,241|45): 'I_Arb_State_Wait_RQ_LOW': undeclared identifier [12.5(IEEE)].
-		Pseudo_I_Arb_State_Wait_RQ_LOW:
-		                             |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,245|31): 'Pseudo_I_Arb_State_Wait_RQ_LOW': undeclared identifier [12.5(IEEE)].
-					#50  I_Arb_State = I_Arb_State_Wait_MEM_LOW  ;
-					               |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,249|20): 'I_Arb_State': undeclared identifier [12.5(IEEE)].
-					#50  I_Arb_State = I_Arb_State_Wait_MEM_LOW  ;
-					                                          |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,249|47): 'I_Arb_State_Wait_MEM_LOW': undeclared identifier [12.5(IEEE)].
-		Pseudo_I_Arb_State_Wait_MEM_LOW:
-		                              |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,253|32): 'Pseudo_I_Arb_State_Wait_MEM_LOW': undeclared identifier [12.5(IEEE)].
-					#50 I_Arb_State = I_Arb_State_Idle  ;
-					              |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,257|19): 'I_Arb_State': undeclared identifier [12.5(IEEE)].
-					#50 I_Arb_State = I_Arb_State_Idle  ;
-					                                 |
-ncvlog: *E,UNDIDN (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,257|38): 'I_Arb_State_Idle': undeclared identifier [12.5(IEEE)].
-endmodule;
-         |
-ncvlog: *E,EXPMPA (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,372|9): expecting the keyword 'module', 'macromodule' or 'primitive'[A.1].
-ncvlog: Memory Usage - 21.3M program + 26.9M data = 48.3M total
-ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.0s, 100.0% cpu)
+ncvlog: Memory Usage - 21.3M program + 27.9M data = 49.2M total
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.5s, 6.3% cpu)

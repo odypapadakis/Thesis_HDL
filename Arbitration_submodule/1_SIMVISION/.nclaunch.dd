@@ -1,15 +1,15 @@
 # DO NOT EDIT -- automatically generated design data file -- DO NOT EDIT!!!
 list \
-workdir {/localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION} \
-cdslib {/localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib} \
+workdir {/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION} \
+cdslib {/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib} \
 worklib {worklib} \
 mode {0} \
 filters {*.v *.vhd *.vhdl} \
 sesslist {} \
 ToolOption_NCVhdl {-logfile ncvhdl.log -errormax 15 -update -linedebug -status} \
-ToolOption_NCVlog { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
-ToolOption_NCVlog/AMS { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
-ToolOption_NCVlog/SV { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
+ToolOption_NCVlog { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
+ToolOption_NCVlog/AMS { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
+ToolOption_NCVlog/SV { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
 ToolOption_irun {-gui {} +linedebug +access rwc -q} \
 ToolOption_NCElab { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncelab.log -errormax 15 -access +wc -status -timescale 1ns/1ps} \
 ToolOption_NCSim { -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status} \
@@ -25,9 +25,9 @@ ToolOption_NCProtect {-logfile ncprotect.log} \
 ToolOption_NCDC {-logfile ncdc.log -messages -status} \
 ToolOption_DBUtil {} \
 ToolOption_NCVhdl {-logfile ncvhdl.log -errormax 15 -update -linedebug -status} \
-ToolOption_NCVlog { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
-ToolOption_NCVlog/AMS { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
-ToolOption_NCVlog/SV { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
+ToolOption_NCVlog { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
+ToolOption_NCVlog/AMS { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
+ToolOption_NCVlog/SV { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncvlog.log -errormax 15 -update -linedebug -status} \
 ToolOption_irun {-gui {} +linedebug +access rwc -q} \
 ToolOption_NCElab { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncelab.log -errormax 15 -access +wc -status -timescale 1ns/1ps} \
 ToolOption_NCSim { -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Diplomatiki/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status} \

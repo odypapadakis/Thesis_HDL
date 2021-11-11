@@ -18,9 +18,10 @@
 
 
 			1) 	Initially, the arbitration module isolates its processor from the buses.
-				It feeds zeroes to the inputs of the processor 
+				The requests signals to the Arbiter are LOW ( D_Bus_RQ, I_Bus_RQ)
 				At this point the inputs from the Arbiter should be LOW for both Grant signals ( D_Bus_GRANT, I_Bus_GRANT).
-				
+				It feeds zeroes to the inputs of the processor.
+
 	----PROBLEM? ( are the zeroes being fed to the buses )
 	----ANSWER	(no, the inputs from the buses are inputs to a MUX . Source :Synthesis)
 
@@ -28,7 +29,7 @@
 				Therefore the processor does not have access to the data being circulated on the bus 
 				and the bus can not be driven by the processor.
 *
-*			*	When a processor want to use a BUS, it raises one of the following signals to HIGH:
+*			2)	When a processor want to use a BUS, it raises one of the following signals to HIGH:
 *				
 *				(  For the Data Bus )
 *				P_DataMem_Read

@@ -40,14 +40,16 @@
 				( For the Instruction Bus )
 				P_InstMem_Read
 *				
-			*	The module will then raise the appropriate signal to HIGH
+				The module will in turn raise the appropriate signal to HIGH
 				D_Bus_RQ - Goes HIGH to signal to the arbiter that the processor wants to use the Data Bus
 				I_Bus_RQ - Goes HIGH to signal to the arbiter that the processor wants to use the Instruction Bus
 
-			*	When the A
+				Then the module will wait for the Arbiter to give it the instruction to connect the processor to the bus
 
+			3)	When the Arbiter drives the grant signal HIGH ( either for the data or the instruction bus)
+				The arbitration module allows the bus from the data to drive the inputs of the processor
+				and switches from showing HIGH-Z to the buses, to connecting the bus with the outputs of the processor.
 
-			*	
 
 
 *

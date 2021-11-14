@@ -31,4 +31,9 @@ ncsim> run 10000ns
 Ran until 10 US + 0
 ncsim> database -open test_db_1 -into /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/test_db_1_1 -default -event
 Created default SHM database test_db_1
-ncsim> 
+ncsim> ^C
+ncsim> exit
+...Regained control from SimVision
+-------------------------------------
+ncsim: Memory Usage - 38.5M program + 59.7M data = 98.2M total (102.3M Peak)
+ncsim: CPU Usage - 79.8s system + 20.2s user = 100.0s total (4473.0s, 2.2% cpu)

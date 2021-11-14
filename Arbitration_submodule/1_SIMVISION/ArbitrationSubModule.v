@@ -158,7 +158,7 @@ module ArbitrationSubModule(
 	  	assign I_Bus_RQ = P_InstMem_Read ; // When the processor wants an instruction, request the Instruction bus from the Bus Arbiter 
 		
 		//Arbitration SubModule --> Instruction Bus
-	  	assign Bus_InstMem_Read		= 	(I_Bus_GRANT) ? P_InstMem_Read			: 1'bz;  // When Grant is LOW, set the outputs to HIGH-Z
+	  	assign Bus_InstMem_Read		= 	(I_Bus_GRANT) ? P_InstMem_Read			: 1'bz;  // When Grant is LOW, set the bus outputs  to HIGH-Z
 	  	assign Bus_InstMem_Address 	= 	(I_Bus_GRANT) ? P_InstMem_Address		: 30'bz; // To avoid contamination of the Bus
 
 	  	//Arbitration SubModule --> Processor

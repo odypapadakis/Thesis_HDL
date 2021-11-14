@@ -2,5 +2,8 @@ ncelab(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncelab: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-ncelab: Memory Usage - 49.8M program + 31.3M data = 81.2M total (Peak 86.2M)
-ncelab: CPU Usage - 0.1s system + 0.1s user = 0.1s total (0.2s, 65.4% cpu)
+include $CDS_INST_DIR/tools/inca/files/hdl.var
+|
+ncvlog_cg: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
+ncelab: Memory Usage - 49.8M program + 31.7M data = 81.5M total (Peak 86.2M)
+ncelab: CPU Usage - 0.1s system + 0.1s user = 0.1s total (0.3s, 49.5% cpu)

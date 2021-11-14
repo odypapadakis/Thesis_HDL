@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps   // <time_unit> / <time_precision>
+`timescale 1ns / 1ns   // <time_unit> / <time_precision>
 
 // This is a testbench to test the functionality of the arbitration module.
 
@@ -24,7 +24,7 @@ reg reset;
 // Pseudo CPU signals -----------------------------
 
 
-	// Regarding the Data bus
+	// Data bus
 
 		// Processor --> Arbitration Module
 		reg 		tb_P_DataMem_Read;
@@ -37,7 +37,7 @@ reg reset;
 		wire			tb_P_DataMem_Ready;
 
 
-	// Regarding the Instruction Bus	
+	//  Instruction Bus	
 
 		// Processor --> Arbitration Module 	
 		reg	[29:0]	tb_P_InstMem_Address;
@@ -94,7 +94,7 @@ ArbitrationSubModule uut(
 
 
 
-		//uut signals 			// Testbench signals
+//uut signals 			// Testbench signals
 
 
 //Data Bus signal connections
@@ -201,16 +201,17 @@ ArbitrationSubModule uut(
 //	thet the bus might be busy.
 //	
 
-reg [1:0] Pseudo_I_Arbiter_Current_State,Pseudo_I_Arbiter_Next_State ;
+reg [2:0] Pseudo_I_Arbiter_Current_State,Pseudo_I_Arbiter_Next_State ;
 
-localparam	Pseudo_I_Arbiter_State_Idle 			    = 0 ;
-localparam	Pseudo_I_Arbiter_State_RQ_HIGH 				= 1 ;
+localparam	Pseudo_I_Arbiter_State_Idle 			= 0 ;
+localparam	Pseudo_I_Arbiter_State_RQ_HIGH 			= 1 ;
 localparam	Pseudo_I_Arbiter_State_RQ_LOW 			= 2 ;
-localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 		= 3 ;
+localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 	= 3 ;
 
 
 
 //	Pseudo Instruction Arbiter Sequential always Block
+
 always@(posedge clk or posedge reset) 
 	if(~reset)
 		Pseudo_I_Arbiter_Current_State <= Pseudo_I_Arbiter_State_Idle ; // On reset, go to the Idle state
@@ -218,47 +219,52 @@ always@(posedge clk or posedge reset)
 		Pseudo_I_Arbiter_Current_State <= Pseudo_I_Arbiter_Next_State ; // If not resetting, start sequencing the states
 
 
-//	Pseudo Instruction Arbiter cimbinational always Block
+
+
+//	Pseudo Instruction Arbiter combinational always Block
 always@(*)
 begin
 	case(Pseudo_I_Arbiter_Current_State)
+//------------------------------------------------------------------------------------------
+	Pseudo_I_Arbiter_State_Idle: 	// The bus is busy , therefore the arbiter drives tha grant signal low.
+		begin
+			tb_I_Bus_GRANT = 1'b0;
 
-		Pseudo_I_Arbiter_State_Idle: 	// The bus is busy , therefore the arbiter drives tha grant signal low.
-			begin
-				tb_I_Bus_GRANT = 1'b0;
-				if( (tb_I_Bus_RQ == 1'b1) && (tb_Bus_InstMem_Ready == 1'b0) )
-					#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arb_State_Wait_Mem_HIGH;
-				else
-					Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle;
+			if( (tb_I_Bus_RQ == 1'b1) )// && (tb_Bus_InstMem_Ready == 1'b0) )
+				#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;
+			else
+				Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle;
 
-			end	
+		end	
+//------------------------------------------------------------------------------------------
+	Pseudo_I_Arbiter_State_RQ_HIGH:
+		begin
+			#50  tb_I_Bus_GRANT = 1'b1;
 
-		Pseudo_I_Arb_State_Wait_Mem_HIGH:
-			begin
-				#50  tb_I_Bus_GRANT = 1'b1;
-				if(tb_Bus_InstMem_Ready == 1'b1)
-					begin
-					#50 I_Arb_State = I_Arb_State_Wait_RQ_LOW  ;
-					end
+			if(tb_I_Bus_RQ == 1'b0)
+				begin
+					#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_LOW  ;
+				end
+			else
+				Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;	
 			end
-
-		Pseudo_I_Arb_State_Wait_RQ_LOW:
+//------------------------------------------------------------------------------------------
+	Pseudo_I_Arbiter_State_RQ_LOW:
 		begin	
-			if(tb_Bus_InstMem_Read == 1'b0)
-					begin
-					#50  I_Arb_State = I_Arb_State_Wait_MEM_LOW  ;
-					end		
+			#50  tb_I_Bus_GRANT = 1'b0;
+			#50  Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle  ;
+					
 		end
-
-		Pseudo_I_Arb_State_Wait_MEM_LOW:
-		begin	
-			if(tb_Bus_InstMem_Ready == 1'b0)
-					begin
-					#50 I_Arb_State = I_Arb_State_Idle  ;
-					end		
-		end
-
-		default:
+//------------------------------------------------------------------------------------------
+	// Pseudo_I_Arb_State_Wait_MEM_LOW:
+	// 	begin	
+	// 		if(tb_Bus_InstMem_Ready == 1'b0)
+	// 			begin
+	// 				#50 I_Arb_State = I_Arb_State_Idle  ;
+	// 			end		
+	// 	end
+//------------------------------------------------------------------------------------------
+	default:
 		begin
 			Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle ;
 			tb_I_Bus_GRANT = 1'b0;
@@ -276,7 +282,7 @@ end
 
 // pseudo Arbiter FSM ENDS --------------------------------------------------
 
-
+/*
 // pseudo Memory FSM STARTS --------------------------------------------------
 
 reg [1:0] Mem_State;
@@ -337,36 +343,29 @@ end
 
 // pseudo Memory FSM ENDS --------------------------------------------------
 
-
+*/
 
 
 initial		// Instruction initial block
 	begin
-	$display("-----------------------------------------		Instruction initial block	-------------------------------");
+		$display("-----------------------------------------		Instruction initial block	-------------------------------");
 
 
-	clk = 0;
-	reset = 1;
-	tb_P_InstMem_Address	= 'h0001;
-	tb_P_InstMem_Read		= 1'b0; 
+		clk = 0;
+		reset = 1;
+		tb_P_InstMem_Address	= 'h0001;
+		tb_P_InstMem_Read		= 1'b0; 
 
-	#100 reset = 0;
+		#100 reset = 0;
 
-
-	
-
-
-
-	 #50 tb_P_InstMem_Address	= 'hABB;	
-	 #10 tb_P_InstMem_Read = 1'b1;
+		#50 tb_P_InstMem_Address	= 'hABB;	
+		#10 tb_P_InstMem_Read = 1'b1;
 
 
-	 #1200 tb_P_InstMem_Read = 1'b0;
-
-
+		#1200 tb_P_InstMem_Read = 1'b0;
 	end
 
-	always #50 clk = !clk;
+always #50 clk = !clk;
 
 
-endmodule;
+endmodule

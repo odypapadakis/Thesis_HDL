@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps  // <time_unit>/<time_precision>  
+//`timescale 1ns / 1ps  // <time_unit>/<time_precision>  
 
 /*
 * File			: ArbitrationSubModule.v

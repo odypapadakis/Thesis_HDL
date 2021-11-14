@@ -1,3 +1,12 @@
+# SimVision Command Script (Mon Nov 15 01:12:32 EET 2021)
+#
+# Version 15.20.s038
+#
+# You can restore this configuration with:
+#
+#     simvision -input simvision_5.svcf
+#
+
 
 #
 # Preferences
@@ -7,7 +16,6 @@ preferences set toolbar-Standard-WatchWindow {
   shown 0
 }
 preferences set waveform-print-variables selected
-preferences set savedlg-dbnames save
 preferences set txe-locate-add-fibers 1
 preferences set signal-type-colors {assertion #FF0000 output #FFA500 group #0099FF inout #00FFFF input #FFFF00 fiber #00EEEE errorsignal #FF0000 unknown #FFFFFF overlay #0099FF internal #00FF00 reference #FFFFFF}
 preferences set waveform-print-time range
@@ -57,7 +65,6 @@ preferences set toolbar-txe_waveform_toggle-WaveWindow {
   usual
   position -anchor e
 }
-preferences set savedlg-cursors 1
 preferences set print-company {CEID VLSI lab}
 preferences set toolbar-Standard-WaveWindow {
   usual
@@ -82,13 +89,25 @@ preferences set toolbar-WaveZoom-WaveWindow {
 preferences set vhdl-colors {H #00ffff L #00ffff 0 {} X #ff0000 - {} 1 {} U #9900ff Z #ff9900 W #ff0000}
 preferences set txe-locate-scroll-x 1
 preferences set txe-locate-scroll-y 1
-preferences set savedlg-simulator ppe
 preferences set txe-locate-pop-waveform 1
 preferences set whats-new-dont-show-at-startup 1
 preferences set toolbar-TimeSearch-WatchWindow {
   usual
   shown 0
 }
+
+#
+# PPE data
+#
+array set dbNames ""
+set dbNames(realName1) [database require waves -search {
+	./waves.shm/waves.trn
+	/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/waves.shm/waves.trn
+}]
+set dbNames(realName2) [database require test_db_1_1 -search {
+	./test_db_1_1/test_db_1_1.trn
+	/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/test_db_1_1/test_db_1_1.trn
+}]
 #
 # Groups
 #
@@ -108,8 +127,8 @@ group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0] \
-    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Read
+     {waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]}  \
+     waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Read 
 group using {Arbitration Module}
 group set -overlay 0
 group set -comment {}
@@ -130,8 +149,8 @@ group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0] \
-    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready \
+     {waves::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]}  \
+     waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready  \
     {### cdivider} \
     {# This is a comment} \
     {### cdivider}
@@ -149,42 +168,50 @@ group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0] \
-    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read \
-    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0] \
-    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready
+     {waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]}  \
+     waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read  \
+     {waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]}  \
+     waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready 
 group using {Pseudo Instruction Arbiter}
 group set -overlay 0
 group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT \
-    simulator::ArbitrationSubModule_Testbench.tb_I_Bus_RQ
+     waves::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT  \
+     waves::ArbitrationSubModule_Testbench.tb_I_Bus_RQ 
 group using {Processor Outputs}
 group set -overlay 0
 group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0] \
-    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Read
+     {waves::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0]}  \
+     waves::ArbitrationSubModule_Testbench.tb_P_InstMem_Read 
 group using {Processor Inputs}
 group set -overlay 0
 group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready \
-    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]
+     waves::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready  \
+     {waves::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]} 
 group using {Arbiter Interface}
 group set -overlay 0
 group set -comment {}
 group clear 0 end
 
 group insert \
-    simulator::ArbitrationSubModule_Testbench.uut.I_Bus_RQ \
-    simulator::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT
+     waves::ArbitrationSubModule_Testbench.uut.I_Bus_RQ  \
+     waves::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT 
+
+#
+# Cursors
+#
+set time 2552ns
+if {[catch {cursor new -name  TimeA -time $time}] != ""} {
+    cursor set -using TimeA -time $time
+}
 
 #
 # Mnemonic Maps
@@ -204,10 +231,10 @@ if {[catch {window new WatchList -name "Design Browser 1" -geometry 1858x963+0+0
 }
 window target "Design Browser 1" on
 browser using {Design Browser 1}
-browser set -scope  simulator::ArbitrationSubModule_Testbench 
+browser set -scope  waves::ArbitrationSubModule_Testbench 
 browser set \
     -signalsort name
-browser yview see  simulator::ArbitrationSubModule_Testbench 
+browser yview see  waves::ArbitrationSubModule_Testbench 
 browser timecontrol set -lock 0
 
 #
@@ -228,10 +255,10 @@ waveform set \
 waveform baseline set -time 1890ns
 
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.clk
+	waves::ArbitrationSubModule_Testbench.clk
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.reset
+	waves::ArbitrationSubModule_Testbench.reset
 	} ]
 set id [waveform add -cdivider divider]
 
@@ -265,8 +292,8 @@ set groupId1 [waveform find -name {Arbitration Module Outputs}]
 set gpGlist1 [waveform hierarchy contents $groupId1]
 set gpID1 [lindex $gpGlist1 0]
 foreach {name attrs}  {
-    {simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]} {}
-    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready {-bgcolor #666666}
+    {waves::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]} {}
+    waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready {-bgcolor #666666}
     cdivider {}
     {This is a comment} {}
     cdivider {}
@@ -297,11 +324,6 @@ waveform grid -state y -start 0 -delta 0
 #
 
 #
-# Console windows
-#
-console set -windowname Console
-window geometry Console 1350x628+119+232
-
-#
 # Layout selection
 #
+

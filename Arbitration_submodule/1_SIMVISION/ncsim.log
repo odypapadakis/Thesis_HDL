@@ -29,4 +29,6 @@ ncsim> file delete .reinvoke.sim
 ncsim> run 10000ns
 -----------------------------------------		Instruction initial block	-------------------------------
 Ran until 10 US + 0
+ncsim> database -open test_db_1 -into /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/test_db_1_1 -default -event
+Created default SHM database test_db_1
 ncsim> 

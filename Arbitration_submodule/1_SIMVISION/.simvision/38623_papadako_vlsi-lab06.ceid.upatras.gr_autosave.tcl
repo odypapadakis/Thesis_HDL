@@ -42,7 +42,8 @@ set assert_internal_msg no
 set svseed 1
 set assert_reporting_mode 0
 alias iprof profile
-database -open -shm -into waves.shm waves -default
+database -open -shm -into /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/test_db_1_1 test_db_1 -default -event
+database -open -shm -into waves.shm waves
 probe -create -database waves ArbitrationSubModule_Testbench.clk ArbitrationSubModule_Testbench.reset
 probe -create -database waves ArbitrationSubModule_Testbench.tb_P_InstMem_In ArbitrationSubModule_Testbench.tb_P_InstMem_Read ArbitrationSubModule_Testbench.tb_P_InstMem_Ready ArbitrationSubModule_Testbench.tb_P_InstMem_Address ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read ArbitrationSubModule_Testbench.tb_Bus_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Next_State ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Current_State
 probe -create -database waves ArbitrationSubModule_Testbench.uut.I_Bus_GRANT ArbitrationSubModule_Testbench.uut.I_Bus_RQ ArbitrationSubModule_Testbench.uut.P_InstMem_Address ArbitrationSubModule_Testbench.uut.P_InstMem_In ArbitrationSubModule_Testbench.uut.P_InstMem_Read ArbitrationSubModule_Testbench.uut.P_InstMem_Ready

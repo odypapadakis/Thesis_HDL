@@ -6,9 +6,11 @@ preferences set toolbar-Standard-WatchWindow {
   usual
   shown 0
 }
+preferences set waveform-print-variables selected
 preferences set savedlg-dbnames save
 preferences set txe-locate-add-fibers 1
 preferences set signal-type-colors {assertion #FF0000 output #FFA500 group #0099FF inout #00FFFF input #FFFF00 fiber #00EEEE errorsignal #FF0000 unknown #FFFFFF overlay #0099FF internal #00FF00 reference #FFFFFF}
+preferences set waveform-print-time range
 preferences set txe-view-hold 0
 preferences set txe-navigate-search-locate 0
 preferences set plugin-enable-svdatabrowser-new 1
@@ -31,7 +33,6 @@ preferences set toolbar-TimeSearch-WaveWindow {
   usual
   position -row 2 -anchor e
 }
-preferences set waveform-print-paper {Custom (1080.0p x 1920.0p)}
 preferences set toolbar-Standard-Console {
   usual
   position -pos 1
@@ -56,6 +57,7 @@ preferences set toolbar-txe_waveform_toggle-WaveWindow {
   position -anchor e
 }
 preferences set savedlg-cursors 1
+preferences set print-company {CEID VLSI lab}
 preferences set toolbar-Standard-WaveWindow {
   usual
   position -pos 1
@@ -68,10 +70,9 @@ preferences set toolbar-SimControl-WatchWindow {
   usual
   shown 0
 }
-preferences set waveform-print-colors {As shown on screen}
+preferences set waveform-print-colors {Color on white}
 preferences set txe-navigate-waveform-next-child 1
-preferences set waveform-print-orientation Portrait
-preferences set print-designer papadako
+preferences set print-designer {Odysseas Papadakis}
 preferences set toolbar-WaveZoom-WaveWindow {
   usual
   position -pos 0 -anchor w
@@ -216,30 +217,17 @@ waveform sidebar visibility partial
 waveform set \
     -primarycursor TimeA \
     -signalnames name \
-    -signalwidth 349 \
+    -signalwidth 268 \
     -units ns \
-    -valuewidth 116
+    -valuewidth 31
 waveform baseline set -time 1890ns
 
-set id [waveform add -cdivider divider]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.heartbeat
-	} ]
 set id [waveform add -signals  {
 	simulator::ArbitrationSubModule_Testbench.clk
 	} ]
 set id [waveform add -signals  {
 	simulator::ArbitrationSubModule_Testbench.reset
 	} ]
-set id [waveform add -cdivider divider]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Current_State[1:0]}
-	} ]
-waveform hierarchy collapse $id
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Next_State[1:0]}
-	} ]
-waveform hierarchy collapse $id
 set id [waveform add -cdivider divider]
 
 set groupId0 [waveform add -groups {{Pseudo Instruction Arbiter}}]
@@ -269,11 +257,32 @@ set groupId1 [waveform find -name {Arbitration module Inputs}]
 
 
 set groupId1 [waveform find -name {Arbitration Module Outputs}]
+set gpGlist1 [waveform hierarchy contents $groupId1]
+set gpID1 [lindex $gpGlist1 0]
+foreach {name attrs}  {
+    {simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]} {}
+    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready {-bgcolor #666666}
+} childcmds {
+    {}
+    {}
+} {
+    set expected [ join [waveform signals -format fullpath $gpID1] ]
+    if {[string equal $name $expected] || $name == "cdivider"} {
+        if {$attrs != ""} {
+            eval waveform format $gpID1 $attrs
+        }
+        if { $childcmds != ""} {
+            eval $childcmds
+        }
+    }
+    set gpGlist1 [lrange $gpGlist1 1 end]
+    set gpID1 [lindex $gpGlist1 0]
+}
 
 
 
-waveform xview limits 247.872ns 2295.872ns
-waveform grid -state x -start 0 -delta 100ns
+waveform xview limits 0 3364ns
+waveform grid -state y -start 0 -delta 0
 
 #
 # Waveform Window Links

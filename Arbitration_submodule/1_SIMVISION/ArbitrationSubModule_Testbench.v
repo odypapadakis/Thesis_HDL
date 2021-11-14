@@ -230,7 +230,8 @@ begin
 		begin
 			tb_I_Bus_Arbiter_GRANT = 1'b0; // The bus is busy , therefore the arbiter drives the grant signal low.
 
-			if( (tb_I_Bus_RQ == 1'b1)  && (tb_Bus_InstMem_Ready == 1'b0) )
+			// If there is a request  and memory is ready
+			if( (tb_I_Bus_RQ == 1'b1)  && (tb_Bus_InstMem_Ready == 1'b0) )  
 				#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;
 			else
 				Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle;
@@ -428,7 +429,7 @@ initial		// Instruction initial block
 		tb_P_InstMem_Read		= 1'b0; 
 
 		// System is running
-		#500 reset = 0;
+		#100 reset = 0;
 
 
 

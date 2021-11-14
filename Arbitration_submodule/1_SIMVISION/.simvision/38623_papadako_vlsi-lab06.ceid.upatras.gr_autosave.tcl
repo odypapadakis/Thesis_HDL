@@ -48,5 +48,6 @@ probe -create -database waves ArbitrationSubModule_Testbench.tb_P_InstMem_In Arb
 probe -create -database waves ArbitrationSubModule_Testbench.uut.I_Bus_GRANT ArbitrationSubModule_Testbench.uut.I_Bus_RQ ArbitrationSubModule_Testbench.uut.P_InstMem_Address ArbitrationSubModule_Testbench.uut.P_InstMem_In ArbitrationSubModule_Testbench.uut.P_InstMem_Read ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
 probe -create -database waves ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT
 probe -create -database waves ArbitrationSubModule_Testbench.heartbeat
+probe -create -database waves ArbitrationSubModule_Testbench.tb_I_Bus_RQ
 
 simvision -input /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/.simvision/38623_papadako_vlsi-lab06.ceid.upatras.gr_autosave.tcl.svcf

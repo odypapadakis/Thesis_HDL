@@ -279,8 +279,7 @@ end
 reg [1:0] Pseudo_I_Memory_Current_State,Pseudo_I_Memory_Next_State ;
 
 localparam	Pseudo_I_Memory_State_Idle 			= 2'b00 ;
-localparam	Pseudo_I_Memory_State_RQ_HIGH 			= 2'b01 ;
-localparam	Pseudo_I_Memory_State_RQ_LOW 			= 2'b10 ;
+localparam	Pseudo_I_Memory_State_Read_HIGH 		= 2'b01 ;
 //localparam	Pseudo_I_Memory_State_Wait_MEM_LOW 	= 2'b11 ;
 
 
@@ -307,21 +306,21 @@ begin
 			#50 tb_Bus_InstMem_In = 32'd1;
 
 			// And show that the data is not valid 
-			#25 tb_Bus_InstMem_Ready = 0'b1
+			#25 tb_Bus_InstMem_Ready = 0'b0;
 
 
 			// When the read signal goes high
 			if( (tb_Bus_InstMem_Read == 1'b1) )
-				#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_RQ_HIGH;
+				#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Read_HIGH;
 			else
 				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle;
 
 		end	
 //------------------------------------------------------------------------------------------
-	Pseudo_I_Memory_State_RQ_HIGH:
+	Pseudo_I_Memory_State_Read_HIGH:
 		begin
 			// Add 4 to the Address and return it as data
-			#50 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'4;
+			#50 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
 
 			// Raise the ready signal, to inform that the data being served is valid
 			#50 tb_Bus_InstMem_Ready = 1'b1;
@@ -329,20 +328,20 @@ begin
 			// When the read signal goes low move on to Idle
 			if(tb_Bus_InstMem_Read == 1'b0)
 				begin
-					#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_RQ_LOW  ;
+					#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle  ;
 				end
 			else
-				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_RQ_HIGH;	
+				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Read_HIGH;	
 			end
 //------------------------------------------------------------------------------------------
-	Pseudo_I_Memory_State_RQ_LOW:
-		begin	
-			#50  tb_I_Bus_Memory_GRANT = 1'b0;
-			#50  Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle  ;
-					
+	default:
+		begin
+			Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle ;
 		end
 
+	endcase	
 
+end
 
 
 
@@ -433,12 +432,12 @@ initial		// Instruction initial block
 
 
 
-		// Processor wants the Instruction at address ABB
-		#50 tb_P_InstMem_Address	= 'd5;	
+		// Processor wants the Instruction at address 5
+		#50 tb_P_InstMem_Address	= 32'd5;	
 		#50 tb_P_InstMem_Read = 1'b1;
 
 		// Processor no longer need the instruction
-		#500 tb_P_InstMem_Read = 1'b0;
+		#200 tb_P_InstMem_Read = 1'b0;
 
 
 

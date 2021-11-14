@@ -206,7 +206,7 @@ reg [1:0] Pseudo_I_Arbiter_Current_State,Pseudo_I_Arbiter_Next_State ;
 localparam	Pseudo_I_Arbiter_State_Idle 			= 2'b00 ;
 localparam	Pseudo_I_Arbiter_State_RQ_HIGH 			= 2'b01 ;
 localparam	Pseudo_I_Arbiter_State_RQ_LOW 			= 2'b10 ;
-//localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 	= 2'b11 ;
+localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 	= 2'b11 ;
 
 
 
@@ -226,11 +226,11 @@ always@(*)
 begin
 	case(Pseudo_I_Arbiter_Current_State)
 //------------------------------------------------------------------------------------------
-	Pseudo_I_Arbiter_State_Idle: 	// The bus is busy , therefore the arbiter drives tha grant signal low.
+	Pseudo_I_Arbiter_State_Idle: 	
 		begin
-			tb_I_Bus_Arbiter_GRANT = 1'b0;
+			tb_I_Bus_Arbiter_GRANT = 1'b0; // The bus is busy , therefore the arbiter drives the grant signal low.
 
-			if( (tb_I_Bus_RQ == 1'b1) )// && (tb_Bus_InstMem_Ready == 1'b0) )
+			if( (tb_I_Bus_RQ == 1'b1)  && (tb_Bus_InstMem_Ready == 1'b0) )
 				#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;
 			else
 				Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle;
@@ -437,7 +437,7 @@ initial		// Instruction initial block
 		#50 tb_P_InstMem_Read = 1'b1;
 
 		// Processor no longer need the instruction
-		#200 tb_P_InstMem_Read = 1'b0;
+		#500 tb_P_InstMem_Read = 1'b0;
 
 
 

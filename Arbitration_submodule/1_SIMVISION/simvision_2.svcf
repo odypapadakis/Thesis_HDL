@@ -1,3 +1,12 @@
+# SimVision Command Script (Sun Nov 14 18:17:33 EET 2021)
+#
+# Version 15.20.s038
+#
+# You can restore this configuration with:
+#
+#     simvision -input simvision_2.svcf
+#
+
 
 #
 # Preferences
@@ -6,7 +15,6 @@ preferences set toolbar-Standard-WatchWindow {
   usual
   shown 0
 }
-preferences set savedlg-dbnames save
 preferences set txe-locate-add-fibers 1
 preferences set signal-type-colors {assertion #FF0000 output #FFA500 group #0099FF inout #00FFFF input #FFFF00 fiber #00EEEE errorsignal #FF0000 unknown #FFFFFF overlay #0099FF internal #00FF00 reference #FFFFFF}
 preferences set txe-view-hold 0
@@ -55,7 +63,6 @@ preferences set toolbar-txe_waveform_toggle-WaveWindow {
   usual
   position -anchor e
 }
-preferences set savedlg-cursors 1
 preferences set toolbar-Standard-WaveWindow {
   usual
   position -pos 1
@@ -79,13 +86,30 @@ preferences set toolbar-WaveZoom-WaveWindow {
 preferences set vhdl-colors {H #00ffff L #00ffff 0 {} X #ff0000 - {} 1 {} U #9900ff Z #ff9900 W #ff0000}
 preferences set txe-locate-scroll-x 1
 preferences set txe-locate-scroll-y 1
-preferences set savedlg-simulator ppe
 preferences set txe-locate-pop-waveform 1
 preferences set whats-new-dont-show-at-startup 1
 preferences set toolbar-TimeSearch-WatchWindow {
   usual
   shown 0
 }
+
+#
+# PPE data
+#
+array set dbNames ""
+set dbNames(realName1) [database require waves -search {
+	./waves.shm/waves-1.trn
+	/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/waves.shm/waves-1.trn
+}]
+
+#
+# Cursors
+#
+set time 1000000ps
+if {[catch {cursor new -name  TimeA -time $time}] != ""} {
+    cursor set -using TimeA -time $time
+}
+cursor set -using TimeA -marching 1
 
 #
 # Mnemonic Maps
@@ -105,10 +129,10 @@ if {[catch {window new WatchList -name "Design Browser 1" -geometry 1858x963+0+0
 }
 window target "Design Browser 1" on
 browser using {Design Browser 1}
-browser set -scope  simulator::ArbitrationSubModule_Testbench 
+browser set -scope  waves::ArbitrationSubModule_Testbench 
 browser set \
     -signalsort name
-browser yview see  simulator::ArbitrationSubModule_Testbench 
+browser yview see  waves::ArbitrationSubModule_Testbench 
 browser timecontrol set -lock 0
 
 #
@@ -129,70 +153,70 @@ waveform set \
 waveform baseline set -time 1010ns
 
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.clk
+	waves::ArbitrationSubModule_Testbench.clk
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.reset
+	waves::ArbitrationSubModule_Testbench.reset
 	} ]
 set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Current_State[1:0]}
+	{waves::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Current_State[1:0]}
 	} ]
 waveform hierarchy expand $id
 set id2 [lindex [waveform hierarchy content $id] 1]
 waveform format $id2 -radix %b
 waveform hierarchy collapse $id
 set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Next_State[1:0]}
+	{waves::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Next_State[1:0]}
 	} ]
 set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.I_Bus_RQ
+	waves::ArbitrationSubModule_Testbench.uut.I_Bus_RQ
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT
+	waves::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT
-	} ]
-set id [waveform add -cdivider divider]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]}
-	} ]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]}
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Read
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
+	waves::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT
 	} ]
 set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0]}
+	{waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]}
 	} ]
 set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]}
+	{waves::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]}
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Read
+	waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Read
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready
+	waves::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
 	} ]
 set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready
+	{waves::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0]}
 	} ]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read
+	{waves::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]}
 	} ]
 set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]}
+	waves::ArbitrationSubModule_Testbench.tb_P_InstMem_Read
 	} ]
 set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]}
+	waves::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready
+	} ]
+set id [waveform add -cdivider divider]
+set id [waveform add -signals  {
+	waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready
+	} ]
+set id [waveform add -signals  {
+	waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read
+	} ]
+set id [waveform add -signals  {
+	{waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]}
+	} ]
+set id [waveform add -signals  {
+	{waves::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]}
 	} ]
 
 waveform xview limits 968ns 1000ns
@@ -202,11 +226,6 @@ waveform xview limits 968ns 1000ns
 #
 
 #
-# Console windows
-#
-console set -windowname Console
-window geometry Console 1350x628+119+232
-
-#
 # Layout selection
 #
+

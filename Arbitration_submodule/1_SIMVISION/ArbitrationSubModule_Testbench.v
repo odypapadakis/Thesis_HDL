@@ -85,7 +85,7 @@ reg reset;
 
 	// Regarding the Instruction Bus        
 		wire	tb_I_Bus_RQ;			 
-		reg		tb_I_Bus_GRANT;  
+		reg		tb_I_Bus_Arbiter_GRANT;  
 
 
 
@@ -132,7 +132,7 @@ ArbitrationSubModule uut(
 	.Bus_InstMem_Read		(tb_Bus_InstMem_Read),
 
 	.I_Bus_RQ				(tb_I_Bus_RQ),
-	.I_Bus_GRANT			(tb_I_Bus_GRANT)
+	.I_Bus_GRANT			(tb_I_Bus_Arbiter_GRANT)
 
 
 );
@@ -201,12 +201,12 @@ ArbitrationSubModule uut(
 //	thet the bus might be busy.
 //	
 
-reg [2:0] Pseudo_I_Arbiter_Current_State,Pseudo_I_Arbiter_Next_State ;
+reg [1:0] Pseudo_I_Arbiter_Current_State,Pseudo_I_Arbiter_Next_State ;
 
-localparam	Pseudo_I_Arbiter_State_Idle 			= 0 ;
-localparam	Pseudo_I_Arbiter_State_RQ_HIGH 			= 1 ;
-localparam	Pseudo_I_Arbiter_State_RQ_LOW 			= 2 ;
-localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 	= 3 ;
+localparam	Pseudo_I_Arbiter_State_Idle 			= 2'b00 ;
+localparam	Pseudo_I_Arbiter_State_RQ_HIGH 			= 2'b01 ;
+localparam	Pseudo_I_Arbiter_State_RQ_LOW 			= 2'b10 ;
+//localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 	= 2'b11 ;
 
 
 
@@ -228,7 +228,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_I_Arbiter_State_Idle: 	// The bus is busy , therefore the arbiter drives tha grant signal low.
 		begin
-			tb_I_Bus_GRANT = 1'b0;
+			tb_I_Bus_Arbiter_GRANT = 1'b0;
 
 			if( (tb_I_Bus_RQ == 1'b1) )// && (tb_Bus_InstMem_Ready == 1'b0) )
 				#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;
@@ -239,7 +239,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_I_Arbiter_State_RQ_HIGH:
 		begin
-			#50  tb_I_Bus_GRANT = 1'b1;
+			#50  tb_I_Bus_Arbiter_GRANT = 1'b1;
 
 			if(tb_I_Bus_RQ == 1'b0)
 				begin
@@ -251,7 +251,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_I_Arbiter_State_RQ_LOW:
 		begin	
-			#50  tb_I_Bus_GRANT = 1'b0;
+			#50  tb_I_Bus_Arbiter_GRANT = 1'b0;
 			#50  Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle  ;
 					
 		end
@@ -267,7 +267,7 @@ begin
 	default:
 		begin
 			Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle ;
-			tb_I_Bus_GRANT = 1'b0;
+			tb_I_Bus_Arbiter_GRANT = 1'b0;
 		end
 
 	endcase	
@@ -353,13 +353,14 @@ initial		// Instruction initial block
 
 		clk = 0;
 		reset = 1;
+
 		tb_P_InstMem_Address	= 'h0001;
 		tb_P_InstMem_Read		= 1'b0; 
 
 		#100 reset = 0;
 
 		#50 tb_P_InstMem_Address	= 'hABB;	
-		#10 tb_P_InstMem_Read = 1'b1;
+		#50 tb_P_InstMem_Read = 1'b1;
 
 
 		#1200 tb_P_InstMem_Read = 1'b0;

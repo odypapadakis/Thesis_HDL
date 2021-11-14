@@ -86,6 +86,55 @@ preferences set toolbar-TimeSearch-WatchWindow {
   usual
   shown 0
 }
+#
+# Groups
+#
+catch {group new -name {Arbitration module Inputs} -overlay 0}
+catch {group new -name {Arbitration Module} -overlay 0}
+catch {group new -name {Group 3} -overlay 0}
+catch {group new -name {Arbitration Module Outputs} -overlay 0}
+catch {group new -name {Group 5} -overlay 0}
+group using {Arbitration module Inputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+    simulator::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT \
+    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Read \
+    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]
+group using {Arbitration Module}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+    {Arbitration module Inputs} \
+    {Arbitration Module Outputs}
+group using {Group 3}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group using {Arbitration Module Outputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+    simulator::ArbitrationSubModule_Testbench.uut.I_Bus_RQ \
+    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0] \
+    simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
+group using {Group 5}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0] \
+    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0] \
+    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Read \
+    simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready
 
 #
 # Mnemonic Maps
@@ -123,11 +172,14 @@ waveform sidebar select designbrowser
 waveform set \
     -primarycursor TimeA \
     -signalnames name \
-    -signalwidth 265 \
+    -signalwidth 223 \
     -units ns \
     -valuewidth 116
-waveform baseline set -time 1010ns
+waveform baseline set -time 1290ns
 
+set id [waveform add -signals  {
+	simulator::ArbitrationSubModule_Testbench.heartbeat
+	} ]
 set id [waveform add -signals  {
 	simulator::ArbitrationSubModule_Testbench.clk
 	} ]
@@ -138,49 +190,19 @@ set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
 	{simulator::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Current_State[1:0]}
 	} ]
-waveform hierarchy expand $id
-set id2 [lindex [waveform hierarchy content $id] 1]
-waveform format $id2 -radix %b
 waveform hierarchy collapse $id
 set id [waveform add -signals  {
 	{simulator::ArbitrationSubModule_Testbench.Pseudo_I_Arbiter_Next_State[1:0]}
 	} ]
 set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.I_Bus_RQ
-	} ]
-set id [waveform add -signals  {
 	simulator::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT
 	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT
-	} ]
 set id [waveform add -cdivider divider]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]}
-	} ]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]}
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Read
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
-	} ]
 set id [waveform add -cdivider divider]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0]}
-	} ]
-set id [waveform add -signals  {
-	{simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]}
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Read
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready
-	} ]
+
+set groupId0 [waveform add -groups {{Group 5}}]
+
 set id [waveform add -cdivider divider]
 set id [waveform add -signals  {
 	simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready
@@ -195,7 +217,16 @@ set id [waveform add -signals  {
 	{simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]}
 	} ]
 
-waveform xview limits 968ns 1000ns
+set groupId0 [waveform add -groups {{Arbitration Module}}]
+
+set groupId1 [waveform find -name {Arbitration module Inputs}]
+
+
+set groupId1 [waveform find -name {Arbitration Module Outputs}]
+
+
+
+waveform xview limits 0 5000ns
 
 #
 # Waveform Window Links

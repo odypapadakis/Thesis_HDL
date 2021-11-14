@@ -9,7 +9,7 @@ include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 ncvlog: Memory Usage - 21.3M program + 28.0M data = 49.4M total
-ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 23.5% cpu)
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 27.6% cpu)
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncelab: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
@@ -23,14 +23,7 @@ ncsim>
 ncsim> # Restoring simulation environment...
 ncsim> input -quiet .reinvoke.sim
 ncsim> file delete .reinvoke.sim
-ncsim> run 1000ns
+ncsim> run 10000ns
 -----------------------------------------		Instruction initial block	-------------------------------
-Ran until 1 US + 0
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT
-Created probe 4
-ncsim> reset
-Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
-ncsim> run 1000ns
------------------------------------------		Instruction initial block	-------------------------------
-Ran until 1 US + 0
+Ran until 10 US + 0
 ncsim> 

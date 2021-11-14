@@ -16,7 +16,7 @@
 module ArbitrationSubModule_Testbench;
 
 
-
+reg heartbeat;
 reg clk;
 reg reset;
 
@@ -213,7 +213,7 @@ localparam	Pseudo_I_Arbiter_State_RQ_LOW 			= 2'b10 ;
 //	Pseudo Instruction Arbiter Sequential always Block
 
 always@(posedge clk or posedge reset) 
-	if(~reset)
+	if(reset)
 		Pseudo_I_Arbiter_Current_State <= Pseudo_I_Arbiter_State_Idle ; // On reset, go to the Idle state
 	else
 		Pseudo_I_Arbiter_Current_State <= Pseudo_I_Arbiter_Next_State ; // If not resetting, start sequencing the states
@@ -273,6 +273,75 @@ begin
 	endcase	
 
 end
+
+
+
+reg [1:0] Pseudo_I_Memory_Current_State,Pseudo_I_Memory_Next_State ;
+
+localparam	Pseudo_I_Memory_State_Idle 			= 2'b00 ;
+localparam	Pseudo_I_Memory_State_RQ_HIGH 			= 2'b01 ;
+localparam	Pseudo_I_Memory_State_RQ_LOW 			= 2'b10 ;
+//localparam	Pseudo_I_Memory_State_Wait_MEM_LOW 	= 2'b11 ;
+
+
+
+//	Pseudo Instruction Memory Sequential always Block
+
+always@(posedge clk or posedge reset) 
+	if(reset)
+		Pseudo_I_Memory_Current_State <= Pseudo_I_Memory_State_Idle ; // On reset, go to the Idle state
+	else
+		Pseudo_I_Memory_Current_State <= Pseudo_I_Memory_Next_State ; // If not resetting, start sequencing the states
+
+
+
+
+//	Pseudo Instruction Memory combinational always Block
+always@(*)
+begin
+	case(Pseudo_I_Memory_Current_State)
+//------------------------------------------------------------------------------------------
+	Pseudo_I_Memory_State_Idle: 	
+		begin
+			// When Idle Drive the Instruction Bus with 001 
+			#50 tb_Bus_InstMem_In = 32'd1;
+
+			// And show that the data is not valid 
+			#25 tb_Bus_InstMem_Ready = 0'b1
+
+
+			// When the read signal goes high
+			if( (tb_Bus_InstMem_Read == 1'b1) )
+				#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_RQ_HIGH;
+			else
+				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle;
+
+		end	
+//------------------------------------------------------------------------------------------
+	Pseudo_I_Memory_State_RQ_HIGH:
+		begin
+			// Add 4 to the Address and return it as data
+			#50 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'4;
+
+			// Raise the ready signal, to inform that the data being served is valid
+			#50 tb_Bus_InstMem_Ready = 1'b1;
+
+			// When the read signal goes low move on to Idle
+			if(tb_Bus_InstMem_Read == 1'b0)
+				begin
+					#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_RQ_LOW  ;
+				end
+			else
+				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_RQ_HIGH;	
+			end
+//------------------------------------------------------------------------------------------
+	Pseudo_I_Memory_State_RQ_LOW:
+		begin	
+			#50  tb_I_Bus_Memory_GRANT = 1'b0;
+			#50  Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle  ;
+					
+		end
+
 
 
 
@@ -350,23 +419,38 @@ initial		// Instruction initial block
 	begin
 		$display("-----------------------------------------		Instruction initial block	-------------------------------");
 
-
+		heartbeat = 0;
 		clk = 0;
 		reset = 1;
 
-		tb_P_InstMem_Address	= 'h0001;
+
+		// Processor is Idle and does not wan to read anything.
+		tb_P_InstMem_Address	= 'h1;
 		tb_P_InstMem_Read		= 1'b0; 
 
-		#100 reset = 0;
+		// System is running
+		#500 reset = 0;
 
-		#50 tb_P_InstMem_Address	= 'hABB;	
+
+
+		// Processor wants the Instruction at address ABB
+		#50 tb_P_InstMem_Address	= 'd5;	
 		#50 tb_P_InstMem_Read = 1'b1;
 
+		// Processor no longer need the instruction
+		#500 tb_P_InstMem_Read = 1'b0;
 
-		#1200 tb_P_InstMem_Read = 1'b0;
+
+
+
+
+
 	end
 
-always #50 clk = !clk;
 
+
+always #50 clk = !clk;
+	
+always #10 heartbeat = !heartbeat;	
 
 endmodule

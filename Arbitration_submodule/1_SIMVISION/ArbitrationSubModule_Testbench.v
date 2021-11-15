@@ -434,7 +434,7 @@ initial		// Instruction initial block
 
 
 		// Processor wants the Instruction at address 5
-		#50 tb_P_InstMem_Address	= 32'd5;	
+		#200 tb_P_InstMem_Address	= 32'd5;	
 		#50 tb_P_InstMem_Read = 1'b1;
 
 		// Processor no longer need the instruction
@@ -451,6 +451,6 @@ initial		// Instruction initial block
 
 always #50 clk = !clk;
 	
-always #10 heartbeat = !heartbeat;	
+always #100 heartbeat = !heartbeat;	
 
 endmodule

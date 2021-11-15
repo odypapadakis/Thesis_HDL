@@ -6,29 +6,7 @@ ncsim: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx
 -------------------------------------
 Relinquished control to SimVision...
 ncsim> 
-ncsim> database -open waves -into waves.shm -default
-Created default SHM database waves
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.clk ArbitrationSubModule_Testbench.reset ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT ArbitrationSubModule_Testbench.tb_I_Bus_RQ ArbitrationSubModule_Testbench.tb_P_InstMem_Address ArbitrationSubModule_Testbench.tb_P_InstMem_Read ArbitrationSubModule_Testbench.tb_P_InstMem_Ready ArbitrationSubModule_Testbench.tb_P_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read ArbitrationSubModule_Testbench.tb_Bus_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready ArbitrationSubModule_Testbench.uut.I_Bus_RQ ArbitrationSubModule_Testbench.uut.I_Bus_GRANT ArbitrationSubModule_Testbench.uut.P_InstMem_Address ArbitrationSubModule_Testbench.uut.P_InstMem_Read ArbitrationSubModule_Testbench.uut.P_InstMem_In ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
-Created probe 1
-ncsim> run 1ms
------------------------------------------		Instruction initial block	-------------------------------
-Ran until 1 MS + 0
-ncsim> reset
-Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
-ncsim> run 100ns
------------------------------------------		Instruction initial block	-------------------------------
-Ran until 100 NS + 0
-ncsim> run 100ns
-Ran until 200 NS + 0
-ncsim> run 100ns
-Ran until 300 NS + 0
-ncsim> run 1000ns
-Ran until 1300 NS + 0
-ncsim> reset
-Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
-ncsim> run 1us
------------------------------------------		Instruction initial block	-------------------------------
-Ran until 1 US + 0
-ncsim> run 1us
-Ran until 2 US + 0
-ncsim> 
+ncsim> ^C
+ncsim> exit
+ncsim: Memory Usage - 38.5M program + 57.0M data = 95.6M total (95.6M Peak)
+ncsim: CPU Usage - 95.4s system + 28.2s user = 123.5s total (6633.7s, 1.9% cpu)

@@ -451,6 +451,6 @@ initial		// Instruction initial block
 
 always #50 clk = !clk;
 	
-always #100 heartbeat = !heartbeat;	
+always #10 heartbeat = !heartbeat;	
 
 endmodule

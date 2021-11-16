@@ -6,7 +6,4 @@ ncsim: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx
 -------------------------------------
 Relinquished control to SimVision...
 ncsim> 
-ncsim> ^C
-ncsim> exit
-ncsim: Memory Usage - 38.5M program + 57.0M data = 95.6M total (95.6M Peak)
-ncsim: CPU Usage - 95.4s system + 28.2s user = 123.5s total (6633.7s, 1.9% cpu)
+ncsim> 

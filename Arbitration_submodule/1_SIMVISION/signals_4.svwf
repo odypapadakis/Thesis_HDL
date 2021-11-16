@@ -1,0 +1,200 @@
+
+#
+# Mnemonic Maps
+#
+mmap new -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+array unset createdGroup
+array set createdGroup {}
+#
+# Groups
+#
+if {[catch {group get -using [list Arbitration module Inputs]}]} {
+set createdGroup([list Arbitration module Inputs]) 1
+catch {group new -name {Arbitration module Inputs} -overlay 0}
+}
+if {[catch {group get -using [list Arbitration Module]}]} {
+set createdGroup([list Arbitration Module]) 1
+catch {group new -name {Arbitration Module} -overlay 0}
+}
+if {[catch {group get -using [list Group 3]}]} {
+set createdGroup([list Group 3]) 1
+catch {group new -name {Group 3} -overlay 0}
+}
+if {[catch {group get -using [list Arbitration Module Outputs]}]} {
+set createdGroup([list Arbitration Module Outputs]) 1
+catch {group new -name {Arbitration Module Outputs} -overlay 0}
+}
+if {[catch {group get -using [list Pseudo Processor]}]} {
+set createdGroup([list Pseudo Processor]) 1
+catch {group new -name {Pseudo Processor} -overlay 0}
+}
+if {[catch {group get -using [list BUS]}]} {
+set createdGroup([list BUS]) 1
+catch {group new -name BUS -overlay 0}
+}
+if {[catch {group get -using [list Pseudo Instruction Arbiter]}]} {
+set createdGroup([list Pseudo Instruction Arbiter]) 1
+catch {group new -name {Pseudo Instruction Arbiter} -overlay 0}
+}
+if {[catch {group get -using [list Processor Outputs]}]} {
+set createdGroup([list Processor Outputs]) 1
+catch {group new -name {Processor Outputs} -overlay 0}
+}
+if {[catch {group get -using [list Processor Inputs]}]} {
+set createdGroup([list Processor Inputs]) 1
+catch {group new -name {Processor Inputs} -overlay 0}
+}
+if {[catch {group get -using [list Arbiter Interface]}]} {
+set createdGroup([list Arbiter Interface]) 1
+catch {group new -name {Arbiter Interface} -overlay 0}
+}
+if {[info exists createdGroup([list Arbitration module Inputs])]} {
+group using {Arbitration module Inputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.uut.P_InstMem_Read}]} ]
+}
+
+if {[info exists createdGroup([list Arbitration Module])]} {
+group using {Arbitration Module}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    {Arbiter Interface} \
+    {Arbitration module Inputs} \
+    {Arbitration Module Outputs}
+}
+
+if {[info exists createdGroup([list Group 3])]} {
+group using {Group 3}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+}
+
+if {[info exists createdGroup([list Arbitration Module Outputs])]} {
+group using {Arbitration Module Outputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.uut.P_InstMem_Ready}]} ] \
+    {### cdivider} \
+    {# This is a comment} \
+    {### cdivider}
+}
+
+if {[info exists createdGroup([list Pseudo Processor])]} {
+group using {Pseudo Processor}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    {Processor Outputs} \
+    {Processor Inputs}
+}
+
+if {[info exists createdGroup([list BUS])]} {
+group using BUS
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready}]} ]
+}
+
+if {[info exists createdGroup([list Pseudo Instruction Arbiter])]} {
+group using {Pseudo Instruction Arbiter}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_I_Bus_RQ}]} ]
+}
+
+if {[info exists createdGroup([list Processor Outputs])]} {
+group using {Processor Outputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0]}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_P_InstMem_Read}]} ]
+}
+
+if {[info exists createdGroup([list Processor Inputs])]} {
+group using {Processor Inputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_P_InstMem_Ready}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]}]} ]
+}
+
+if {[info exists createdGroup([list Arbiter Interface])]} {
+group using {Arbiter Interface}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+group insert \
+    [subst  {[format {ArbitrationSubModule_Testbench.uut.I_Bus_RQ}]} ] \
+    [subst  {[format {ArbitrationSubModule_Testbench.uut.I_Bus_GRANT}]} ]
+}
+
+set id [waveform add -signals [subst  {
+	{[format {ArbitrationSubModule_Testbench.clk}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {ArbitrationSubModule_Testbench.reset}]}
+	} ]]
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups {{Pseudo Instruction Arbiter}}]
+
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups {{Pseudo Processor}}]
+
+set groupId1 [waveform find -name {Processor Outputs}]
+
+
+set groupId1 [waveform find -name {Processor Inputs}]
+
+
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups BUS]
+
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups {{Arbitration Module}}]
+
+set groupId1 [waveform find -name {Arbiter Interface}]
+
+
+set groupId1 [waveform find -name {Arbitration module Inputs}]
+
+
+set groupId1 [waveform find -name {Arbitration Module Outputs}]
+
+
+
+waveform xview limits 0 256ns
+waveform grid -state y -start 0 -delta 0

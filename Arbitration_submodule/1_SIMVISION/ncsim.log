@@ -32,4 +32,7 @@ ncsim> file delete .reinvoke.sim
 ncsim> run 1.2us
 Starting Simulation 
 Ran until 1200 NS + 0
-ncsim> 
+ncsim> ^C
+ncsim> exit
+ncsim: Memory Usage - 38.5M program + 59.3M data = 97.8M total (101.8M Peak)
+ncsim: CPU Usage - 2.1s system + 0.7s user = 2.8s total (118.1s, 2.4% cpu)

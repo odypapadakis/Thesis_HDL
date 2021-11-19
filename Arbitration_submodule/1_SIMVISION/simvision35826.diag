@@ -542,3 +542,15 @@ Time Started: Sat Nov 20 01:30:49 EET 2021
      Command: ncsim -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status worklib.ArbitrationSubModule_Testbench:module -tcl -update
 
  
+*** Message Type: info ***
+When: Sat Nov 20 01:35:52 EET 2021
+Delete waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Sat Nov 20 01:35:54 EET 2021
+Delete browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Sat Nov 20 01:35:56 EET 2021
+SimVision Exit.
+ 

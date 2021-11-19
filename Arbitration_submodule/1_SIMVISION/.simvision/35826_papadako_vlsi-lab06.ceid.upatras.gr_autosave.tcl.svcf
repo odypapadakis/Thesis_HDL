@@ -298,6 +298,14 @@ group insert \
 #
 # Markers
 #
+set time 700ns
+if {[catch {marker new -name  5 -time $time}] != ""} {
+    marker set -using 5 -time $time
+}
+set time 172ns
+if {[catch {marker new -name  1 -time $time -color #99ff00}] != ""} {
+    marker set -using 1 -time $time -color #99ff00
+}
 set time 350ns
 if {[catch {marker new -name  3 -time $time -color #ffff00}] != ""} {
     marker set -using 3 -time $time -color #ffff00
@@ -314,14 +322,6 @@ set time 850ns
 if {[catch {marker new -name  6 -time $time}] != ""} {
     marker set -using 6 -time $time
 }
-set time 172ns
-if {[catch {marker new -name  1 -time $time -color #99ff00}] != ""} {
-    marker set -using 1 -time $time -color #99ff00
-}
-set time 700ns
-if {[catch {marker new -name  5 -time $time}] != ""} {
-    marker set -using 5 -time $time
-}
 
 #
 # Mnemonic Maps
@@ -332,217 +332,6 @@ mmap new -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor ora
 {%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
 {%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
 {%x=* -label %x -linecolor gray -shape bus}}
-
-#
-# Design Browser windows
-#
-if {[catch {window new WatchList -name "Design Browser 1" -geometry 1854x959+0+0}] != ""} {
-    window geometry "Design Browser 1" 1854x959+0+0
-}
-window target "Design Browser 1" on
-browser using {Design Browser 1}
-browser set -scope  simulator::ArbitrationSubModule_Testbench 
-browser set \
-    -signalsort name
-browser yview see  simulator::ArbitrationSubModule_Testbench 
-browser timecontrol set -lock 0
-
-#
-# Waveform windows
-#
-if {[catch {window new WaveWindow -name "Waveform 1" -geometry 1854x959+0+0}] != ""} {
-    window geometry "Waveform 1" 1854x959+0+0
-}
-window target "Waveform 1" on
-waveform using {Waveform 1}
-waveform sidebar visibility partial
-waveform set \
-    -primarycursor TimeA \
-    -signalnames name \
-    -signalwidth 268 \
-    -units ns \
-    -valuewidth 87
-waveform baseline set -time 2004ns
-
-set id [waveform add -cdivider divider]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.clk
-	} ]
-set id [waveform add -signals  {
-	simulator::ArbitrationSubModule_Testbench.reset
-	} ]
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{Pseudo Instruction Arbiter}}]
-set gpGlist0 [waveform hierarchy contents $groupId0]
-set gpID0 [lindex $gpGlist0 0]
-foreach {name attrs}  {
-    simulator::ArbitrationSubModule_Testbench.tb_I_Bus_RQ {-bgcolor #be7400}
-    simulator::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT {-bgcolor #be7400}
-} childcmds {
-    {}
-    {}
-} {
-    set expected [ join [waveform signals -format fullpath $gpID0] ]
-    if {[string equal $name $expected] || $name == "cdivider"} {
-        if {$attrs != ""} {
-            eval waveform format $gpID0 $attrs
-        }
-        if { $childcmds != ""} {
-            eval $childcmds
-        }
-    }
-    set gpGlist0 [lrange $gpGlist0 1 end]
-    set gpID0 [lindex $gpGlist0 0]
-}
-
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{Pseudo Processor}}]
-
-set groupId1 [waveform find -name {Processor Outputs}]
-
-
-set groupId1 [waveform find -name {Processor Inputs}]
-
-
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{INSTRUCTION BUS}}]
-set gpGlist0 [waveform hierarchy contents $groupId0]
-set gpID0 [lindex $gpGlist0 0]
-foreach {name attrs}  {
-    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read {-bgcolor #001e58}
-    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready {-bgcolor #001e58}
-    {simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]} {-bgcolor #001e58}
-    {simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]} {-bgcolor #001e58}
-} childcmds {
-    {}
-    {}
-    {
-        set id $gpID0
-        waveform hierarchy collapse $id
-    }
-    {
-        set id $gpID0
-        waveform hierarchy collapse $id
-    }
-} {
-    set expected [ join [waveform signals -format fullpath $gpID0] ]
-    if {[string equal $name $expected] || $name == "cdivider"} {
-        if {$attrs != ""} {
-            eval waveform format $gpID0 $attrs
-        }
-        if { $childcmds != ""} {
-            eval $childcmds
-        }
-    }
-    set gpGlist0 [lrange $gpGlist0 1 end]
-    set gpID0 [lindex $gpGlist0 0]
-}
-
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{Arbitration Module INST interface}}]
-
-set groupId1 [waveform find -name {Arbiter Interface}]
-
-
-set groupId1 [waveform find -name {Arbitration module Inputs}]
-
-
-set groupId1 [waveform find -name {Arbitration Module Outputs}]
-
-
-set id [waveform add -cdivider divider]
-set id [waveform add -label {Instruction Signals above} -comment {}]
-waveform format $id -bgcolor #00b1b4
-set id [waveform add -label {Data Signals Below} -comment {}]
-waveform format $id -bgcolor #00b1b4
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{Pseudo Data Arbiter}}]
-set gpGlist0 [waveform hierarchy contents $groupId0]
-set gpID0 [lindex $gpGlist0 0]
-foreach {name attrs}  {
-    simulator::ArbitrationSubModule_Testbench.tb_D_Bus_RQ {-bgcolor #be7400}
-    simulator::ArbitrationSubModule_Testbench.tb_D_Bus_GRANT {-bgcolor #be7400}
-} childcmds {
-    {}
-    {}
-} {
-    set expected [ join [waveform signals -format fullpath $gpID0] ]
-    if {[string equal $name $expected] || $name == "cdivider"} {
-        if {$attrs != ""} {
-            eval waveform format $gpID0 $attrs
-        }
-        if { $childcmds != ""} {
-            eval $childcmds
-        }
-    }
-    set gpGlist0 [lrange $gpGlist0 1 end]
-    set gpID0 [lindex $gpGlist0 0]
-}
-
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{Pseudo Processor D}}]
-
-set groupId1 [waveform find -name {Processor D Outputs}]
-
-
-set groupId1 [waveform find -name {Processor D Inputs}]
-
-
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{DATA BUS}}]
-
-set id [waveform add -cdivider divider]
-
-set groupId0 [waveform add -groups {{Arbitration Module DATA interface}}]
-
-set groupId1 [waveform find -name {Arbiter DATA Interface}]
-
-
-set groupId1 [waveform find -name {Arb. Moduel DATA Inputs}]
-set gpGlist1 [waveform hierarchy contents $groupId1]
-set gpID1 [lindex $gpGlist1 0]
-foreach {name attrs}  {
-    {simulator::ArbitrationSubModule_Testbench.uut.P_DataMem_Out[31:0]} {}
-    {simulator::ArbitrationSubModule_Testbench.uut.P_DataMem_Write[3:0]} {-radix %b}
-    simulator::ArbitrationSubModule_Testbench.uut.P_DataMem_Read {}
-    {simulator::ArbitrationSubModule_Testbench.uut.P_DataMem_Address[29:0]} {}
-} childcmds {
-    {}
-    {}
-    {}
-    {}
-} {
-    set expected [ join [waveform signals -format fullpath $gpID1] ]
-    if {[string equal $name $expected] || $name == "cdivider"} {
-        if {$attrs != ""} {
-            eval waveform format $gpID1 $attrs
-        }
-        if { $childcmds != ""} {
-            eval $childcmds
-        }
-    }
-    set gpGlist1 [lrange $gpGlist1 1 end]
-    set gpID1 [lindex $gpGlist1 0]
-}
-
-
-set groupId1 [waveform find -name {Arb. Module Data outputs}]
-
-
-
-waveform xview limits 0 1200ns
-waveform grid -state y -start 0 -delta 0
-
-#
-# Waveform Window Links
-#
 
 #
 # Console windows

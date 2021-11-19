@@ -2,35 +2,31 @@ ncsim(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncsim: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
+include $CDS_INST_DIR/tools/inca/files/hdl.var
+|
+ncupdate: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
+include $CDS_INST_DIR/tools/inca/files/hdl.var
+|
+ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
+			#25 tb_Bus_InstMem_Ready = 0'b0;
+			                           |
+ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,310|30): zero width prefix to based number ignored [2.5(IEEE)].
+ncvlog: Memory Usage - 21.3M program + 28.0M data = 49.4M total
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 27.8% cpu)
+include $CDS_INST_DIR/tools/inca/files/hdl.var
+|
+ncelab: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
+include $CDS_INST_DIR/tools/inca/files/hdl.var
+|
+ncvlog_cg: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 
 -------------------------------------
 Relinquished control to SimVision...
 ncsim> 
-ncsim> database -open waves -into waves.shm -default
-Created default SHM database waves
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.clk ArbitrationSubModule_Testbench.reset ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT ArbitrationSubModule_Testbench.tb_I_Bus_RQ ArbitrationSubModule_Testbench.tb_P_InstMem_Address ArbitrationSubModule_Testbench.tb_P_InstMem_Read ArbitrationSubModule_Testbench.tb_P_InstMem_Ready ArbitrationSubModule_Testbench.tb_P_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read ArbitrationSubModule_Testbench.tb_Bus_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready ArbitrationSubModule_Testbench.uut.I_Bus_RQ ArbitrationSubModule_Testbench.uut.I_Bus_GRANT ArbitrationSubModule_Testbench.uut.P_InstMem_Address ArbitrationSubModule_Testbench.uut.P_InstMem_Read ArbitrationSubModule_Testbench.uut.P_InstMem_In ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
-Created probe 1
+ncsim> # Restoring simulation environment...
+ncsim> input -quiet .reinvoke.sim
+ncsim> file delete .reinvoke.sim
 ncsim> run 1.2us
 -----------------------------------------		Instruction initial block	-------------------------------
 Ran until 1200 NS + 0
-ncsim> run
-Simulation interrupted at 408591300 NS + 0
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.tb_D_Bus_GRANT ArbitrationSubModule_Testbench.tb_D_Bus_RQ ArbitrationSubModule_Testbench.tb_P_DataMem_In ArbitrationSubModule_Testbench.tb_P_DataMem_Out ArbitrationSubModule_Testbench.tb_P_DataMem_Read ArbitrationSubModule_Testbench.tb_P_DataMem_Ready ArbitrationSubModule_Testbench.tb_Bus_DataMem_Address ArbitrationSubModule_Testbench.tb_P_DataMem_Write ArbitrationSubModule_Testbench.tb_Bus_DataMem_In ArbitrationSubModule_Testbench.tb_Bus_DataMem_Out ArbitrationSubModule_Testbench.tb_Bus_DataMem_Read ArbitrationSubModule_Testbench.tb_Bus_DataMem_Ready ArbitrationSubModule_Testbench.tb_Bus_DataMem_Write ArbitrationSubModule_Testbench.tb_P_DataMem_Address
-Created probe 2
-ncsim> reset
-Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
-ncsim> run 1.2us
------------------------------------------		Instruction initial block	-------------------------------
-Ran until 1200 NS + 0
-ncsim> run
-Simulation interrupted at 104440050 NS + 0
-ncsim> reset
-Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
-ncsim> run 1.2us
------------------------------------------		Instruction initial block	-------------------------------
-Ran until 1200 NS + 0
-ncsim> run 1.2us
-Ran until 2400 NS + 0
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.uut.P_DataMem_Ready ArbitrationSubModule_Testbench.uut.P_DataMem_In ArbitrationSubModule_Testbench.uut.P_DataMem_Address ArbitrationSubModule_Testbench.uut.P_DataMem_Read ArbitrationSubModule_Testbench.uut.P_DataMem_Write ArbitrationSubModule_Testbench.uut.P_DataMem_Out ArbitrationSubModule_Testbench.uut.D_Bus_RQ ArbitrationSubModule_Testbench.uut.D_Bus_GRANT
-Created probe 3
 ncsim> 

@@ -508,3 +508,7 @@ attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux4
     invoked from within
 "namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 249,000ps"
  
+*** Message Type: info ***
+When: Sat Nov 20 01:26:08 EET 2021
+Delete schematic window: "Schematic Tracer 1"
+ 

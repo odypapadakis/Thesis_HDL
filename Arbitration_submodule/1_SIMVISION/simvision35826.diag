@@ -1,0 +1,510 @@
+*** Message Type: info ***
+When: Fri Nov 19 23:59:40 EET 2021
+SimVision started.
+Version: TOOL:  simvision(64)   15.20-s038
+User: papadako
+Host: vlsi-lab06.ceid.upatras.gr
+Platform: Linux/x86_64/2.6.32-754.35.1.el6.x86_64
+Started: Fri Nov 19 23:59:40 EET 2021
+Command: /eda/cadence/2017-18/RHELx86/INCISIVE_15.20.038/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:vlsi-lab06.ceid.upatras.gr:36212 -64BIT
+Work Directory: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION
+ 
+*** Message Type: info ***
+When: Fri Nov 19 23:59:41 EET 2021
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Fri Nov 19 23:59:47 EET 2021
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Fri Nov 19 23:59:49 EET 2021
+Connect to Simulator
+      Design: worklib.ArbitrationSubModule_Testbench:module
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:      ncsim(64)       15.20-s038
+        User: papadako
+        Host: vlsi-lab06.ceid.upatras.gr
+Time Started: Fri Nov 19 23:59:37 EET 2021
+  Process ID: 35821
+   Directory: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION
+     Command: ncsim -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status worklib.ArbitrationSubModule_Testbench:module
+
+ 
+*** Message Type: info ***
+When: Fri Nov 19 23:59:50 EET 2021
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Sat Nov 20 00:00:02 EET 2021
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Sat Nov 20 00:00:05 EET 2021
+Create schematic window: "Schematic Tracer 1"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:00:25 EET 2021
+cannot find inst Mux74 in mod ArbitrationSubModule
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 52,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 52,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:00:30 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 52,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 52,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:00:44 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 52,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 52,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:00:50 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 52,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 52,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:03:20 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 52,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 52,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:06:59 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 325ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 325ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:07:06 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 655ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 655ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:07:14 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 655ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 655ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:07:16 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 655ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 655ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:08:25 EET 2021
+invalid data access handle "group6"
+    while executing
+"dac::is $handle -scope"
+    ("default" arm line 5)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "util::getExpandMenuDescription" line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "util::buildExpandMenu" line 1)
+    invoked from within
+"util::buildExpandMenu $handle $menu [itcl::code $this _opencloseMenuCB]  -signallist $itk_component(signallist) -node $node -flavor $flavor -menutype ..."
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::buildOpenMenu" body line 16)
+    invoked from within
+"$itk_component(waveset) buildOpenMenu $node $menu popup"
+    (object "::.waveWindow0" method "::WaveWindow::_build_signallist_buttonPopup" body line 5)
+    invoked from within
+"_build_${c}Popup $m $x $y"
+    (object "::.waveWindow0" method "::WaveWindow::_popupCallback" body line 3)
+    invoked from within
+"::.waveWindow0 _popupCallback .waveWindow0.work.user.waveset.popup signallist_button 8 61"
+    (in namespace inscope "::WaveWindow" script line 1)
+    invoked from within
+"namespace inscope ::WaveWindow {::.waveWindow0 _popupCallback .waveWindow0.work.user.waveset.popup signallist_button 8 61}"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 $cmd"
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_popupCallback" body line 91)
+    invoked from within
+"::.waveWindow0.work.user.waveset _popupCallback signallist 8 61 48 238"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _popupCallback signallist 8 61 48 238}"
+    (command bound to event)
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:15:21 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 655ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 655ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:15:25 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 655ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 655ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:15:52 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 155,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 155,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:15:53 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 970,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 970,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:18:35 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 1,907,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 1,907,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:19:26 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 1,443,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 1,443,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:19:52 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 125,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 125,000ps"
+ 
+*** Message Type: error ***
+When: Sat Nov 20 00:22:33 EET 2021
+attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+    while executing
+"$itk_component(nlview) ictrl update -attr"
+    (object "::.schematicWindow0.work.user.scrollframe.schematic" method "::SchematicBoxIctrl::updatevalues" body line 15)
+    invoked from within
+"$itk_component(schematic) updatevalues $arga(time)"
+    ("!time" arm line 13)
+    invoked from within
+"switch -- $arga(event) {
+    !cursor {
+          # event !cursor cursor <cursorhandle>
+          configure -markerprimary $arga(cursor)
+     }
+      
+       !time {
+            # event ..."
+    (object "::.schematicWindow0" method "::SchematicWindow::_processTimeControlEvents" body line 4)
+    invoked from within
+"::.schematicWindow0 _processTimeControlEvents event !time time 249,000ps"
+    (in namespace inscope "::SchematicWindow" script line 1)
+    invoked from within
+"namespace inscope ::SchematicWindow {::.schematicWindow0 _processTimeControlEvents} event !time time 249,000ps"
+ 

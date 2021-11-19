@@ -13,9 +13,24 @@ Created probe 1
 ncsim> run 1.2us
 -----------------------------------------		Instruction initial block	-------------------------------
 Ran until 1200 NS + 0
+ncsim> run
+Simulation interrupted at 408591300 NS + 0
+ncsim> probe -create -shm ArbitrationSubModule_Testbench.tb_D_Bus_GRANT ArbitrationSubModule_Testbench.tb_D_Bus_RQ ArbitrationSubModule_Testbench.tb_P_DataMem_In ArbitrationSubModule_Testbench.tb_P_DataMem_Out ArbitrationSubModule_Testbench.tb_P_DataMem_Read ArbitrationSubModule_Testbench.tb_P_DataMem_Ready ArbitrationSubModule_Testbench.tb_Bus_DataMem_Address ArbitrationSubModule_Testbench.tb_P_DataMem_Write ArbitrationSubModule_Testbench.tb_Bus_DataMem_In ArbitrationSubModule_Testbench.tb_Bus_DataMem_Out ArbitrationSubModule_Testbench.tb_Bus_DataMem_Read ArbitrationSubModule_Testbench.tb_Bus_DataMem_Ready ArbitrationSubModule_Testbench.tb_Bus_DataMem_Write ArbitrationSubModule_Testbench.tb_P_DataMem_Address
+Created probe 2
+ncsim> reset
+Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
+ncsim> run 1.2us
+-----------------------------------------		Instruction initial block	-------------------------------
+Ran until 1200 NS + 0
+ncsim> run
+Simulation interrupted at 104440050 NS + 0
+ncsim> reset
+Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
+ncsim> run 1.2us
+-----------------------------------------		Instruction initial block	-------------------------------
+Ran until 1200 NS + 0
 ncsim> run 1.2us
 Ran until 2400 NS + 0
-ncsim> ^C
-ncsim> exit
-ncsim: Memory Usage - 38.5M program + 60.1M data = 98.7M total (102.2M Peak)
-ncsim: CPU Usage - 8.8s system + 2.4s user = 11.2s total (518.9s, 2.2% cpu)
+ncsim> probe -create -shm ArbitrationSubModule_Testbench.uut.P_DataMem_Ready ArbitrationSubModule_Testbench.uut.P_DataMem_In ArbitrationSubModule_Testbench.uut.P_DataMem_Address ArbitrationSubModule_Testbench.uut.P_DataMem_Read ArbitrationSubModule_Testbench.uut.P_DataMem_Write ArbitrationSubModule_Testbench.uut.P_DataMem_Out ArbitrationSubModule_Testbench.uut.D_Bus_RQ ArbitrationSubModule_Testbench.uut.D_Bus_GRANT
+Created probe 3
+ncsim> 

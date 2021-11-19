@@ -1,0 +1,41 @@
+halsynth: Loading design snapshot....
+halsynth: Traversing design hierarchy....
+halsynth: *M,_SCOPE: ArbitrationSubModule_Testbench
+halsynth: *W,INIUSP (./ArbitrationSubModule_Testbench.v,418|0): Module ArbitrationSubModule_Testbench has an initial block or a variable declaration assignment, which is ignored by synthesis tools.
+halsynth: *E,AWNDEL (./ArbitrationSubModule_Testbench.v,452|0): Always block with no event trigger at the start in module ArbitrationSubModule_Testbench.
+halsynth: *E,AWNDEL (./ArbitrationSubModule_Testbench.v,454|0): Always block with no event trigger at the start in module ArbitrationSubModule_Testbench.
+halsynth: *W,LATBAS (./ArbitrationSubModule_Testbench.v,300|0): In module/design-unit ArbitrationSubModule_Testbench, latch is assigned by blocking assignments.
+halsynth: *W,LATMLG (./ArbitrationSubModule_Testbench.v,300|0): The latches 'tb_Bus_InstMem_In, tb_Bus_InstMem_Ready' in the process/always block are mixed with combinational logic.
+halsynth: *W,COMBLP: In module ArbitrationSubModule_Testbench, combinational loop detected for node clk.
+halsynth: (./ArbitrationSubModule_Testbench.v,452|0): Source HDL information for the error/warning mentioned above.
+@:clk 
+halsynth: *W,COMBLP: In module ArbitrationSubModule_Testbench, combinational loop detected for node heartbeat.
+halsynth: (./ArbitrationSubModule_Testbench.v,454|0): Source HDL information for the error/warning mentioned above.
+@:heartbeat 
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,235|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,243|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,247|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,255|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,256|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,307|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,310|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,315|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,324|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,327|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,332|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,452|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *W,IGNDLY (./ArbitrationSubModule_Testbench.v,454|0): Lumped delay in module 'ArbitrationSubModule_Testbench' is ignored.
+halsynth: *N,FSMIDN (./ArbitrationSubModule_Testbench.v,219|0): In module/design-unit 'ArbitrationSubModule_Testbench', FSM for state register 'Pseudo_I_Arbiter_Current_State' has been recognized.
+halsynth: *W,TRNMBT (./ArbitrationSubModule_Testbench.v,241|0): For the specified state '1', the state value changes by more than one bits on transition to state(s): 2.
+halsynth: (./ArbitrationSubModule_Testbench.v,247|0): Source HDL information for the error/warning mentioned above.
+halsynth: *N,FSMIDN (./ArbitrationSubModule_Testbench.v,294|0): In module/design-unit 'ArbitrationSubModule_Testbench', FSM for state register 'Pseudo_I_Memory_Current_State' has been recognized.
+halsynth: *W,EXTFSM (./ArbitrationSubModule_Testbench.v,16|0): Extraneous logic present in module/design-unit 'ArbitrationSubModule_Testbench' that encodes an FSM (multiple FSMs).
+~:CLKOUT
+~:CLKSRD
+~:COMBLP
+~:INPOUT
+~:MUDREG
+~:MULWIR
+~:UNDRIV
+halsynth: Total errors   = 2.
+halsynth: Total warnings = 20.

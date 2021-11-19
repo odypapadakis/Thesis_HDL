@@ -1,0 +1,911 @@
+# SimVision Command Script (Fri Nov 19 16:30:36 EET 2021)
+#
+# Version 15.20.s038
+#
+# You can restore this configuration with:
+#
+#      ncsim -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status worklib.ArbitrationSubModule_Testbench:module -input restore15.tcl
+#
+
+
+#
+# Preferences
+#
+preferences set toolbar-Standard-WatchWindow {
+  usual
+  shown 0
+}
+preferences set txe-locate-add-fibers 1
+preferences set signal-type-colors {assertion #FF0000 output #FFA500 group #0099FF inout #00FFFF input #FFFF00 fiber #00EEEE errorsignal #FF0000 unknown #FFFFFF overlay #0099FF internal #00FF00 reference #FFFFFF}
+preferences set waveform-print-time range
+preferences set txe-view-hold 0
+preferences set toolbar-UserTB0-WaveWindow {
+  usual
+  shown 0
+  position -row 3 -pos 1 -anchor w
+  name {User Toolbar}
+}
+preferences set txe-navigate-search-locate 0
+preferences set plugin-enable-svdatabrowser-new 1
+preferences set toolbar-SimControl-WaveWindow {
+  usual
+  position -row 1 -pos 2
+}
+preferences set toolbar-Windows-WatchWindow {
+  usual
+  shown 0
+}
+preferences set toolbar-CursorControl-WaveWindow {
+  usual
+  position -row 0 -pos 3 -anchor e
+}
+preferences set verilog-colors {Su #ff0099 0 {} 1 {} HiZ #ff9900 We #00ffff Pu #9900ff Sm #00ff99 X #ff0000 StrX #ff0000 other #ffff00 Z #ff9900 Me #0000ff La #ff00ff St {}}
+preferences set user-toolbar-list {WaveWindow UserTB0}
+preferences set toolbar-sendToIndago-WaveWindow {
+  usual
+  shown 0
+}
+preferences set txe-navigate-waveform-locate 1
+preferences set txe-view-hidden 0
+preferences set toolbar-TimeSearch-WaveWindow {
+  usual
+  position -anchor e
+}
+preferences set waveform-print-paper {A4 (210mm x 297mm)}
+preferences set toolbar-Standard-Console {
+  usual
+  position -pos 1
+}
+preferences set txe-search-show-linenumbers 1
+preferences set toolbar-OperatingMode-WaveWindow {
+  usual
+  position -pos 4
+  name OperatingMode
+}
+preferences set toolbar-Search-Console {
+  usual
+  position -pos 2
+}
+preferences set plugin-enable-svdatabrowser 0
+preferences set toolbar-NavSignalList-WaveWindow {
+  usual
+  position -row 0 -pos 2
+}
+preferences set toolbar-txe_waveform_toggle-WaveWindow {
+  usual
+  position -pos 4 -anchor e
+}
+preferences set print-company {CEID VLSI lab}
+preferences set plugin-enable-groupscope 0
+preferences set key-bindings {Edit>Undo Ctrl+z PageUp PageUp View>Zoom>Next {Alt+Right arrow} View>Zoom>In Alt+i PageDown PageDown Edit>Copy Ctrl+c ScrollDown {Down arrow} Edit>Create>Group Ctrl+g View>Zoom>FullY_widget y Simulation>NextInScope F7 Edit>Select>All Ctrl+a Format>Radix>Decimal Ctrl+Shift+D Edit>Ungroup Ctrl+Shift+G TopOfPage Home Edit>Create>Condition Ctrl+e {command -console SimVision {%w sidebar access designbrowser selectall}} Alt+a ScrollLeft {Left arrow} Edit>SelectAllText Alt+a Edit>TextSearchConsole Alt+s View>Zoom>FullX_widget = Windows>SendTo>Waveform Ctrl+w Simulation>Return Shift+F5 View>CallstackDown {Ctrl+Down arrow} Select>All Ctrl+a Edit>Delete Del Format>Radix>Octal Ctrl+Shift+O Edit>Cut Ctrl+x Simulation>Run F2 Edit>Create>Marker Ctrl+m View>Center Alt+c View>CallstackInWindow Ctrl+k Edit>SelectAll Ctrl+a File>OpenDatabase Ctrl+o Edit>Redo Ctrl+y Format>Radix>Binary Ctrl+Shift+B View>ExpandSequenceTime>AtCursor Alt+x ScrollUp {Up arrow} File>CloseWindow Ctrl+Shift+w ScrollRight {Right arrow} View>Zoom>FullX Alt+= Edit>Create>Bus Ctrl+b Explore>NextEdge Ctrl+\] View>Zoom>Cursor-Baseline Alt+z View>Zoom>OutX Alt+o Edit>GoToLine Ctrl+g View>Zoom>Fit Alt+= View>Zoom>OutX_widget o View>CallstackUp {Ctrl+Up arrow} View>Bookmarks>Add Ctrl+b View>ShowValues Ctrl+s Simulation>Next F6 Edit>Search Ctrl+f Format>Radix>Hexadecimal Ctrl+Shift+H Edit>Create>MarkerAtCursor Ctrl+Shift+M View>Zoom>InX Alt+i View>Zoom>Out Alt+o Edit>TextSearch Ctrl+f View>Zoom>Previous {Alt+Left arrow} Edit>Paste Ctrl+v Format>Signed Ctrl+Shift+S Control>ReinvokeSimulator Ctrl+F3 View>CollapseSequenceTime>AtCursor Alt+s View>Zoom>InX_widget i Format>Radix>ASCII Ctrl+Shift+A Simulation>Step F5 Explore>PreviousEdge {Ctrl+[} BottomOfPage End}
+preferences set plugin-enable-interleaveandcompare 0
+preferences set plugin-enable-waveformfrequencyplot 0
+preferences set toolbar-SimControl-WatchWindow {
+  usual
+  shown 0
+}
+preferences set waveform-print-colors {Color on white}
+preferences set toolbar-Windows-WaveWindow {
+  usual
+  position -pos 5
+}
+preferences set txe-navigate-waveform-next-child 1
+preferences set print-designer {Odysseas Papadakis}
+preferences set toolbar-WaveZoom-WaveWindow {
+  usual
+  position -row 1 -pos 0 -anchor w
+}
+preferences set vhdl-colors {X #ff0000 0 {} L #00ffff H #00ffff U #9900ff 1 {} - {} Z #ff9900 W #ff0000}
+preferences set txe-locate-scroll-x 1
+preferences set txe-locate-scroll-y 1
+preferences set txe-locate-pop-waveform 1
+preferences set whats-new-dont-show-at-startup 1
+preferences set toolbar-TimeSearch-WatchWindow {
+  usual
+  shown 0
+}
+preferences set undo-add-signal 1
+preferences set waveform-print-orientation Portrait
+preferences set waveform-print-variables selected
+preferences set toolbar-Standard-WaveWindow {
+  usual
+  position -pos 1
+}
+
+#
+# Simulator
+#
+database require simulator -hints {
+	simulator "ncsim -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status worklib.ArbitrationSubModule_Testbench:module -input restore15.tcl"
+}
+#
+# Groups
+#
+catch {group new -name {Arbitration module Inputs} -overlay 0}
+catch {group new -name {Arbitration Module} -overlay 0}
+catch {group new -name {Group 3} -overlay 0}
+catch {group new -name {Arbitration Module Outputs} -overlay 0}
+catch {group new -name {Pseudo Processor} -overlay 0}
+catch {group new -name BUS -overlay 0}
+catch {group new -name {Pseudo Instruction Arbiter} -overlay 0}
+catch {group new -name {Processor Outputs} -overlay 0}
+catch {group new -name {Processor Inputs} -overlay 0}
+catch {group new -name {Arbiter Interface} -overlay 0}
+group using {Arbitration module Inputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     {simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Address[29:0]}  \
+     simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Read 
+group using {Arbitration Module}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+    {Arbiter Interface} \
+    {Arbitration module Inputs} \
+    {Arbitration Module Outputs}
+group using {Group 3}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group using {Arbitration Module Outputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     {simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_In[31:0]}  \
+     simulator::ArbitrationSubModule_Testbench.uut.P_InstMem_Ready  \
+    {### cdivider} \
+    {# This is a comment} \
+    {### cdivider}
+group using {Pseudo Processor}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+    {Processor Outputs} \
+    {Processor Inputs}
+group using BUS
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     {simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]}  \
+     simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read  \
+     {simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]}  \
+     simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready 
+group using {Pseudo Instruction Arbiter}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     simulator::ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT  \
+     simulator::ArbitrationSubModule_Testbench.tb_I_Bus_RQ 
+group using {Processor Outputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     {simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Address[29:0]}  \
+     simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Read 
+group using {Processor Inputs}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_Ready  \
+     {simulator::ArbitrationSubModule_Testbench.tb_P_InstMem_In[31:0]} 
+group using {Arbiter Interface}
+group set -overlay 0
+group set -comment {}
+group clear 0 end
+
+group insert \
+     simulator::ArbitrationSubModule_Testbench.uut.I_Bus_RQ  \
+     simulator::ArbitrationSubModule_Testbench.uut.I_Bus_GRANT 
+
+#
+# Cursors
+#
+set time 130ns
+if {[catch {cursor new -name  TimeA -time $time}] != ""} {
+    cursor set -using TimeA -time $time
+}
+set time 2400000ps
+if {[catch {cursor new -name  TimeB -time $time}] != ""} {
+    cursor set -using TimeB -time $time
+}
+cursor set -using TimeB -marching 1
+
+#
+# Markers
+#
+set time 350ns
+if {[catch {marker new -name  3 -time $time -color #ffff00}] != ""} {
+    marker set -using 3 -time $time -color #ffff00
+}
+set time 172ns
+if {[catch {marker new -name  1 -time $time -color #99ff00}] != ""} {
+    marker set -using 1 -time $time -color #99ff00
+}
+set time 500ns
+if {[catch {marker new -name  4 -time $time -color #00ffff}] != ""} {
+    marker set -using 4 -time $time -color #00ffff
+}
+set time 850ns
+if {[catch {marker new -name  6 -time $time}] != ""} {
+    marker set -using 6 -time $time
+}
+set time 700ns
+if {[catch {marker new -name  5 -time $time}] != ""} {
+    marker set -using 5 -time $time
+}
+set time 1us
+if {[catch {marker new -name  7 -time $time -color #00ffff}] != ""} {
+    marker set -using 7 -time $time -color #00ffff
+}
+
+#
+# Mnemonic Maps
+#
+mmap new -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+#
+# Design Browser windows
+#
+if {[catch {window new WatchList -name "Design Browser 1" -geometry 1854x959+0+0}] != ""} {
+    window geometry "Design Browser 1" 1854x959+0+0
+}
+window target "Design Browser 1" on
+browser using {Design Browser 1}
+browser set -scope  simulator::ArbitrationSubModule_Testbench 
+browser set \
+    -signalsort name
+browser yview see  simulator::ArbitrationSubModule_Testbench 
+browser timecontrol set -lock 0
+
+#
+# Waveform windows
+#
+if {[catch {window new WaveWindow -name "Waveform 1" -geometry 1854x959+0+0}] != ""} {
+    window geometry "Waveform 1" 1854x959+0+0
+}
+window target "Waveform 1" on
+waveform using {Waveform 1}
+waveform sidebar visibility partial
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 268 \
+    -units ns \
+    -valuewidth 87
+waveform baseline set -time 2004ns
+
+set id [waveform add -signals  {
+	simulator::ArbitrationSubModule_Testbench.clk
+	} ]
+set id [waveform add -signals  {
+	simulator::ArbitrationSubModule_Testbench.reset
+	} ]
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups {{Pseudo Instruction Arbiter}}]
+
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups {{Pseudo Processor}}]
+
+set groupId1 [waveform find -name {Processor Outputs}]
+
+
+set groupId1 [waveform find -name {Processor Inputs}]
+
+
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups BUS]
+set gpGlist0 [waveform hierarchy contents $groupId0]
+set gpID0 [lindex $gpGlist0 0]
+foreach {name attrs}  {
+    {simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address[29:0]} {-bgcolor #0073ff}
+    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read {-bgcolor #0073ff}
+    {simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_In[31:0]} {-bgcolor #0073ff}
+    simulator::ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready {-bgcolor #0073ff}
+} childcmds {
+    {}
+    {}
+    {}
+    {}
+} {
+    set expected [ join [waveform signals -format fullpath $gpID0] ]
+    if {[string equal $name $expected] || $name == "cdivider"} {
+        if {$attrs != ""} {
+            eval waveform format $gpID0 $attrs
+        }
+        if { $childcmds != ""} {
+            eval $childcmds
+        }
+    }
+    set gpGlist0 [lrange $gpGlist0 1 end]
+    set gpID0 [lindex $gpGlist0 0]
+}
+
+set id [waveform add -cdivider divider]
+
+set groupId0 [waveform add -groups {{Arbitration Module}}]
+
+set groupId1 [waveform find -name {Arbiter Interface}]
+
+
+set groupId1 [waveform find -name {Arbitration module Inputs}]
+
+
+set groupId1 [waveform find -name {Arbitration Module Outputs}]
+
+
+
+waveform xview limits 0 1200ns
+waveform grid -state y -start 0 -delta 0
+
+#
+# Waveform Window Links
+#
+
+#
+# Schematic Tracer windows
+#
+if {[catch {window new SchematicWindow -name "Schematic Tracer 1" -geometry 1858x963+0+0}] != ""} {
+    window geometry "Schematic Tracer 1" 1858x963+0+0
+}
+window target "Schematic Tracer 1" on
+schematic using "Schematic Tracer 1"
+schematic sidebar select designbrowser
+schematic set \
+    -radix default \
+    -fullsignalname 0 \
+    -showvalue 1 \
+    -showstrength 0 \
+    -showgrey 0 \
+    -tracemode Single \
+    -showrtl 1 \
+    -showcells 1 \
+    -showcellpins 0
+schematic timecontrol set -lock 0
+schematic restore -state {# String saved with Nlview version 6.3.5  2013-09-24 bk=1.2895 VDI=33 GEI=35
+#  -string
+# non-default properties - (restore without -noprops)
+property attrcolor #40e0d0
+property attrfontsize 10
+property boxmaxwidth 400
+property boxmingap 40
+property boxminheight 40
+property boxminwidth 100
+property buscolor #00ff00
+property fillcolor1 #000000
+property fillcolor2 #000000
+property gatecellname 1
+property netcolor #00ff00
+property objecthighlight0 #ff00aa
+property objecthighlight1 #ff00aa
+property objecthighlight2 #00ff00
+property objecthighlight3 #ffff00
+property objecthighlight9 #ffffaf
+property pinattrmax 200
+property selectionappearance 2
+property selectioncolor #ffffaf
+property sheetheight 0
+property sheetwidth 0
+property showhierpinname 1
+property showinvisibles 1
+property showmarks 1
+#
+module new module {}
+load symbol DAI_SOURCE_IN {} DEF port 0 input -loc -14 0 0 0 pinattrdsp @name -cr -2 -5 8i attrdsp @cell -ll -10 16 10 path 0 -6 9 -6 12 -3 12 6 0 6 0 -6 path 12 -3 9 -3 9 -6 path 2 -3 6 -3 path 2 0 10 0 path 2 3 10 3
+load symbol DAI_SOURCE_OUT {} DEF port 0 output -loc 26 0 12 0 pinattrdsp @name -cl 30 -5 8i attrdsp @cell -ll -10 16 10 path 0 -6 9 -6 12 -3 12 6 0 6 0 -6 path 12 -3 9 -3 9 -6 path 2 -3 6 -3 path 2 0 10 0 path 2 3 10 3
+levelinfo -pg 1 0 10
+show
+#
+module new root {} -nosplit
+load symbol rtl_Mux1 {} MUX pin 2 input.left pin 3 input.left pin 4 input.left pin 5 input.left pin 6 output.right pinBus 0 input.top 2 0 1 fillcolor 1
+load symbol rtl_Mux7 {} MUX pin 2 input.left pin 3 input.left pin 4 input.left pin 5 input.left pinBus 0 input.top 2 0 1 pinBus 1 output.right 2 6 7 fillcolor 1
+load symbol rtl_Mux23 {} MUX pin 2 input.left pin 3 input.left pin 4 input.left pin 5 input.left pin 6 output.right pinBus 0 input.top 2 0 1 fillcolor 1
+load symbol rtl_Mux29 {} MUX pin 2 input.left pin 3 input.left pin 4 input.left pin 5 input.left pinBus 0 input.top 2 0 1 pinBus 1 output.right 2 6 7 fillcolor 1
+load symbol rtl_FlipFlop2 {} GEN pin 4 input.clk.left pin 5 input.bot pin 6 input.top pinBus 0 output.right 2 0 1 pinBus 1 input.left 2 2 3 fillcolor 1
+load symbol rtl_FlipFlop3 {} GEN pin 4 input.clk.left pin 5 input.bot pin 6 input.top pinBus 0 output.right 2 0 1 pinBus 1 input.left 2 2 3 fillcolor 1
+load symbol ArbitrationSubModule {} HIERBOX pin 32 input.left pin 33 output.right pin 100 input.left pin 199 output.right pin 200 input.left pin 201 output.right pin 202 input.left pin 265 output.right pin 296 input.left pin 297 output.right pin 330 input.left pin 331 output.right pinBus 0 input.left 32 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 pinBus 1 output.right 4 34 35 36 37 pinBus 2 output.right 30 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 pinBus 3 output.right 32 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 pinBus 4 input.left 4 101 102 103 104 pinBus 5 input.left 30 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 pinBus 6 input.left 32 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 pinBus 7 output.right 32 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 pinBus 8 input.left 32 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 pinBus 9 output.right 30 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 pinBus 10 input.left 30 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 pinBus 11 output.right 32 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 fillcolor 2
+load symbol rtl_Mux87 {} MUX pin 0 input.top pin 33 input.left pinBus 0 input.left 32 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 pinBus 1 output.right 32 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 fillcolor 1
+load symbol rtl_Mux45 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux47 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux49 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux51 {} MUX pin 0 input.top pin 31 input.left pin 32 output.right pinBus 0 input.left 30 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 fillcolor 1
+load symbol rtl_Mux53 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux55 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pinBus 0 output.right 30 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 fillcolor 1
+load symbol rtl_Mux57 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux59 {} MUX pin 0 input.top pin 33 input.left pinBus 0 input.left 32 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 pinBus 1 output.right 32 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 fillcolor 1
+load symbol rtl_Mux61 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux63 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux65 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux67 {} MUX pin 0 input.top pin 5 input.left pin 6 output.right pinBus 0 input.left 4 1 2 3 4 fillcolor 1
+load symbol rtl_Mux69 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux71 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pinBus 0 output.right 4 3 4 5 6 fillcolor 1
+load symbol rtl_Mux73 {} MUX pin 0 input.top pin 31 input.left pin 32 output.right pinBus 0 input.left 30 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 fillcolor 1
+load symbol rtl_Mux75 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux77 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pinBus 0 output.right 30 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 fillcolor 1
+load symbol rtl_Mux79 {} MUX pin 0 input.top pin 33 input.left pin 34 output.right pinBus 0 input.left 32 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 fillcolor 1
+load symbol rtl_Mux81 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol rtl_Mux83 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pinBus 0 output.right 32 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 fillcolor 1
+load symbol rtl_Mux85 {} MUX pin 0 input.top pin 1 input.left pin 2 input.left pin 3 output.right fillcolor 1
+load symbol or_6 {} OR pin 0 input pin 1 input pin 2 output fillcolor 1
+load symbol or_7 {} OR pin 0 input pin 1 input pin 2 output fillcolor 1
+load symbol or_8 {} OR pin 0 input pin 1 input pin 2 output fillcolor 1
+load symbol or_9 {} OR pin 0 input pin 1 input pin 2 output fillcolor 1
+load symbol rtl_Wire1 {} RTL(wire) pin 0 output.right pin 1 input.left fillcolor 1
+load inst simulator::ArbitrationSubModule_Testbench,uut ArbitrationSubModule {} -attr @name uut -attr @color #00ffff -pinAttr 32 @name tb_Bus_DataMem_Ready= -pinAttr 32 @color #ffffff -pinAttr 33 @name tb_Bus_DataMem_Read= -pinAttr 33 @color #ffffff -pinAttr 100 @name tb_P_DataMem_Read= -pinAttr 100 @color #ffffff -pinAttr 199 @name tb_P_DataMem_Ready= -pinAttr 199 @color #ffffff -pinAttr 200 @name tb_D_Bus_GRANT= -pinAttr 200 @color #ffffff -pinAttr 201 @name tb_D_Bus_RQ= -pinAttr 201 @color #ffffff -pinAttr 202 @name tb_Bus_InstMem_Ready=0 -pinAttr 265 @name tb_Bus_InstMem_Read=z -pinAttr 296 @name tb_P_InstMem_Read=0 -pinAttr 297 @name tb_P_InstMem_Ready=0 -pinAttr 330 @name tb_I_Bus_Arbiter_GRANT=0 -pinAttr 331 @name tb_I_Bus_RQ=0 -pinBusAttr 0 @name {tb_Bus_DataMem_In[31:0]=} -pinBusAttr 0 @color #ffffff -pinBusAttr 1 @name {tb_Bus_DataMem_Write[3:0]=} -pinBusAttr 1 @color #ffffff -pinBusAttr 2 @name {tb_Bus_DataMem_Address[29:0]=} -pinBusAttr 2 @color #ffffff -pinBusAttr 3 @name {tb_Bus_DataMem_Out[31:0]=} -pinBusAttr 3 @color #ffffff -pinBusAttr 4 @name {tb_P_DataMem_Write[3:0]=} -pinBusAttr 4 @color #ffffff -pinBusAttr 5 @name {tb_P_DataMem_Address[29:0]=} -pinBusAttr 5 @color #ffffff -pinBusAttr 6 @name {tb_P_DataMem_Out[31:0]=} -pinBusAttr 6 @color #ffffff -pinBusAttr 7 @name {tb_P_DataMem_In[31:0]=} -pinBusAttr 7 @color #ffffff -pinBusAttr 8 @name {tb_Bus_InstMem_In[31:0]=00000001} -pinBusAttr 9 @name {tb_Bus_InstMem_Address[29:0]=zzzzzzzz} -pinBusAttr 10 @name {tb_P_InstMem_Address[29:0]=00000001} -pinBusAttr 11 @name {tb_P_InstMem_In[31:0]=00000000} -hierPinAttr 32 @name Bus_DataMem_Ready -hierPinAttr 33 @name Bus_DataMem_Read -hierPinAttr 100 @name P_DataMem_Read -hierPinAttr 199 @name P_DataMem_Ready -hierPinAttr 200 @name D_Bus_GRANT -hierPinAttr 201 @name D_Bus_RQ -hierPinAttr 202 @name Bus_InstMem_Ready -hierPinAttr 265 @name Bus_InstMem_Read -hierPinAttr 296 @name P_InstMem_Read -hierPinAttr 297 @name P_InstMem_Ready -hierPinAttr 330 @name I_Bus_GRANT -hierPinAttr 331 @name I_Bus_RQ -hierPinBusAttr 0 @name {Bus_DataMem_In[31:0]} -hierPinBusAttr 1 @name {Bus_DataMem_Write[3:0]} -hierPinBusAttr 2 @name {Bus_DataMem_Address[29:0]} -hierPinBusAttr 3 @name {Bus_DataMem_Out[31:0]} -hierPinBusAttr 4 @name {P_DataMem_Write[3:0]} -hierPinBusAttr 5 @name {P_DataMem_Address[29:0]} -hierPinBusAttr 6 @name {P_DataMem_Out[31:0]} -hierPinBusAttr 7 @name {P_DataMem_In[31:0]} -hierPinBusAttr 8 @name {Bus_InstMem_In[31:0]} -hierPinBusAttr 9 @name {Bus_InstMem_Address[29:0]} -hierPinBusAttr 10 @name {P_InstMem_Address[29:0]} -hierPinBusAttr 11 @name {P_InstMem_In[31:0]} -pg 1 -lvl 1 -y 30 -regy -10
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux86 rtl_Mux87 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 33 @name (0) -pinBusAttr 0 @name {Bus_DataMem_In[31:0]=} -pinBusAttr 0 @color #ffffff -pinBusAttr 1 @name {P_DataMem_In[31:0]=} -pinBusAttr 1 @color #ffffff -pg 1 -lvl 1 -y 450
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux62 rtl_Mux63 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 1 @name (0) -pinAttr 2 @name (1) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 810
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux74 rtl_Mux75 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 1 @name (0) -pinAttr 2 @name (1) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 80
+load inst simulator::ArbitrationSubModule_Testbench,uut,OR4 or_8 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name {P_DataMem_Write[1]=} -pinAttr 1 @color #ffffff -pinAttr 2 @name {} -pg 1 -lvl 3 -y 980
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux48 rtl_Mux49 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name (0) -pinAttr 2 @name {} -pinAttr 3 @name Bus_InstMem_Read= -pinAttr 3 @color #ffffff -pg 1 -lvl 2 -y 1380
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux64 rtl_Mux65 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name (0) -pinAttr 2 @name {} -pinAttr 3 @name Bus_DataMem_Read= -pinAttr 3 @color #ffffff -pg 1 -lvl 2 -y 850
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux76 rtl_Mux77 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name (0) -pinAttr 2 @name {} -pinBusAttr 0 @name {Bus_DataMem_Address[29:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 2 -y 410
+load inst simulator::ArbitrationSubModule_Testbench,uut,OR6 or_9 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name {P_DataMem_Write[0]=} -pinAttr 1 @color #ffffff -pinAttr 2 @name D_Bus_RQ= -pinAttr 2 @color #ffffff -pg 1 -lvl 4 -y 1030
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux50 rtl_Mux51 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_GRANT=0 -pinAttr 31 @name (0) -pinAttr 32 @name {} -pinBusAttr 0 @name {P_InstMem_Address[29:0]=00000001} -pg 1 -lvl 1 -y 1070
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux66 rtl_Mux67 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 5 @name (0) -pinAttr 6 @name {} -pinBusAttr 0 @name {P_DataMem_Write[3:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 1 -y 720
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux78 rtl_Mux79 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 33 @name (0) -pinAttr 34 @name {} -pinBusAttr 0 @name {P_DataMem_Out[31:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 1 -y 350
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux52 rtl_Mux53 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_GRANT=0 -pinAttr 1 @name (0) -pinAttr 2 @name (1) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 1250
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux68 rtl_Mux69 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 1 @name (0) -pinAttr 2 @name (1) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 630
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux80 rtl_Mux81 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 1 @name (0) -pinAttr 2 @name (1) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 170
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux54 rtl_Mux55 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name (0) -pinAttr 2 @name {} -pinBusAttr 0 @name {Bus_InstMem_Address[29:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 2 -y 1060
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux70 rtl_Mux71 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name (0) -pinAttr 2 @name {} -pinBusAttr 0 @name {Bus_DataMem_Write[3:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 2 -y 670
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux82 rtl_Mux83 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name (0) -pinAttr 2 @name {} -pinBusAttr 0 @name {Bus_DataMem_Out[31:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 2 -y 330
+load inst simulator::ArbitrationSubModule_Testbench,uut,OR0 or_6 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name P_DataMem_Read= -pinAttr 0 @color #ffffff -pinAttr 1 @name {P_DataMem_Write[3]=} -pinAttr 1 @color #ffffff -pinAttr 2 @name {} -pg 1 -lvl 1 -y 960
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux44 rtl_Mux45 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_GRANT=0 -pinAttr 1 @name P_InstMem_Read=0 -pinAttr 2 @name (0) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 1450
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux56 rtl_Mux57 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_GRANT=0 -pinAttr 1 @name Bus_InstMem_Ready= -pinAttr 1 @color #ffffff -pinAttr 2 @name (0) -pinAttr 3 @name P_InstMem_Ready=0 -pg 1 -lvl 1 -y 1590
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux60 rtl_Mux61 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 1 @name P_DataMem_Read= -pinAttr 1 @color #ffffff -pinAttr 2 @name (0) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 900
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux72 rtl_Mux73 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 31 @name (0) -pinAttr 32 @name {} -pinBusAttr 0 @name {P_DataMem_Address[29:0]=} -pinBusAttr 0 @color #ffffff -pg 1 -lvl 1 -y 260
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux84 rtl_Mux85 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name D_Bus_GRANT= -pinAttr 0 @color #ffffff -pinAttr 1 @name Bus_DataMem_Ready= -pinAttr 1 @color #ffffff -pinAttr 2 @name (0) -pinAttr 3 @name P_DataMem_Ready= -pinAttr 3 @color #ffffff -pg 1 -lvl 1 -y 540
+load inst simulator::ArbitrationSubModule_Testbench,uut,OR2 or_7 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name {} -pinAttr 1 @name {P_DataMem_Write[2]=} -pinAttr 1 @color #ffffff -pinAttr 2 @name {} -pg 1 -lvl 2 -y 970
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux46 rtl_Mux47 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_GRANT=0 -pinAttr 1 @name (0) -pinAttr 2 @name (1) -pinAttr 3 @name {} -pg 1 -lvl 1 -y 1340
+load inst simulator::ArbitrationSubModule_Testbench,uut,Mux58 rtl_Mux59 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_GRANT=0 -pinAttr 33 @name (0) -pinBusAttr 0 @name {Bus_InstMem_In[31:0]=} -pinBusAttr 0 @color #ffffff -pinBusAttr 1 @name {P_InstMem_In[31:0]=00000000} -pg 1 -lvl 1 -y 1160
+load inst simulator::ArbitrationSubModule_Testbench,uut,Wire0 rtl_Wire1 {} -hier simulator::ArbitrationSubModule_Testbench,uut -attr @name {} -attr @cell {} -attr @color #00ff00 -pinAttr 0 @name I_Bus_RQ=0 -pinAttr 1 @name P_InstMem_Read=0 -pg 1 -lvl 1 -y 1510
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[30]} -attr @name {Bus_DataMem_Out[30]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 69 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Write[3]} -attr @name {Bus_DataMem_Write[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 34 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[26]} -attr @name {Bus_DataMem_Address[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 41 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[14]} -attr @name {Bus_DataMem_In[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 17 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 18
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[29]} -attr @name {Bus_InstMem_Address[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 235 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[19]} -attr @name {P_InstMem_In[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 310 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 46
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[21]} -attr @name {P_DataMem_Out[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 145 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[6]} -attr @name {P_InstMem_Address[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 289 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[6]} -attr @name {P_DataMem_Out[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 160 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[23]} -attr @name {P_DataMem_Address[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 111 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[4]} -attr @name {Bus_DataMem_Address[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 63 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[3]} -attr @name {P_DataMem_In[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 195 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 62
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[25]} -attr @name {P_InstMem_In[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 304 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 40
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[8]} -attr @name {P_DataMem_Address[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 126 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[7]} -attr @name {Bus_DataMem_Out[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 92 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[26]} -attr @name {Bus_InstMem_In[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 208 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[31]} -attr @name {Bus_InstMem_In[31]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 203 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[14]} -attr @name {Bus_InstMem_Address[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 250 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 18
+load net simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Read -attr @name Bus_DataMem_Read -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 33 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux64 3
+netloc simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Read 1 2 3 NJ 850 NJ 850 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[2]} -attr @name {P_DataMem_Out[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 164 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 30
+load net simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Ready -attr @name Bus_DataMem_Ready -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 32 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux84 1
+netloc simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Ready 1 0 1 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[19]} -attr @name {P_DataMem_In[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 179 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 46
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[19]} -attr @name {Bus_DataMem_Out[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 80 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[3]} -attr @name {Bus_DataMem_Out[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 96 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 31
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[8]} -attr @name {P_DataMem_In[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 190 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 57
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[26]} -attr @name {Bus_InstMem_Address[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 238 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[5]} -attr @name {P_InstMem_In[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 324 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 60
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[18]} -attr @name {P_InstMem_In[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 311 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 47
+load net simulator::ArbitrationSubModule_Testbench,uut,D_Bus_GRANT -attr @name D_Bus_GRANT -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 200 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux60 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux62 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux68 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux74 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux80 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux84 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,D_Bus_GRANT 1 0 1 440
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[4]} -attr @name {Bus_DataMem_Out[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 95 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[22]} -attr @name {P_DataMem_Address[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 112 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 8
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[27]} -attr @name {Bus_DataMem_Address[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 40 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[15]} -attr @name {Bus_DataMem_In[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 16 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[18]} -attr @name {Bus_InstMem_In[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 216 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[7]} -attr @name {P_InstMem_Address[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 288 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[18]} -attr @name {P_DataMem_Out[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 148 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[2]} -attr @name {P_DataMem_Address[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 132 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[23]} -attr @name {Bus_DataMem_Address[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 44 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 9
+load net simulator::ArbitrationSubModule_Testbench,reset -attr @style dashed -attr @name reset -attr @color #666666.1
+netloc simulator::ArbitrationSubModule_Testbench,reset 1 0 1 N
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[5]} -attr @name {Bus_DataMem_Address[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 62 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[4]} -attr @name {P_DataMem_In[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 194 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 61
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[25]} -attr @name {Bus_InstMem_In[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 209 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[26]} -attr @name {P_InstMem_In[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 303 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 39
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[27]} -attr @name {P_DataMem_In[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 171 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 38
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[9]} -attr @name {P_DataMem_Address[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 125 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[10]} -attr @name {Bus_DataMem_Address[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 57 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[13]} -attr @name {Bus_InstMem_Address[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 251 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[26]} -attr @name {P_DataMem_Out[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 140 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[11]} -attr @name {Bus_DataMem_In[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 20 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[18]} -attr @name {P_DataMem_In[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 180 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 47
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[14]} -attr @name {P_DataMem_Out[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 152 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 18
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[2]} -attr @name {Bus_DataMem_Out[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 97 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 32
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[29]} -attr @name {P_InstMem_Address[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 266 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[30]} -attr @name {P_DataMem_Out[30]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 136 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 2
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4832 -attr @name _cpiHT_56_4832 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux52 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4832 1 1 1 990
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[9]} -attr @name {P_DataMem_In[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 189 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 56
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[27]} -attr @name {Bus_InstMem_Address[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 237 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[17]} -attr @name {P_InstMem_In[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 312 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 48
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[20]} -attr @name {Bus_InstMem_In[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 214 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[15]} -attr @name {P_InstMem_Address[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 280 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[4]} -attr @name {P_InstMem_Address[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 291 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[6]} -attr @name {P_InstMem_In[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 323 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 59
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5648 -attr @name _cpiHT_56_5648 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux74 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5648 1 1 1 990
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[28]} -attr @name {Bus_DataMem_Address[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 39 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[17]} -attr @name {P_DataMem_Out[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 149 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[5]} -attr @name {Bus_DataMem_Out[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 94 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 29
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[19]} -attr @name {Bus_InstMem_In[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 215 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[22]} -attr @name {Bus_DataMem_Address[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 45 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[13]} -attr @name {P_DataMem_In[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 185 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 52
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[3]} -attr @name {P_DataMem_Address[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 131 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[5]} -attr @name {P_DataMem_In[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 193 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 60
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[31]} -attr @name {P_DataMem_In[31]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 167 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 34
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[27]} -attr @name {P_InstMem_In[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 302 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 38
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[28]} -attr @name {P_DataMem_In[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 170 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 37
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[10]} -attr @name {Bus_DataMem_In[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 21 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[11]} -attr @name {P_InstMem_Address[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 284 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[27]} -attr @name {P_DataMem_Out[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 139 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[29]} -attr @name {P_DataMem_Address[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 105 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[16]} -attr @name {Bus_InstMem_Address[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 248 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 16
+load net simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Read -attr @name P_InstMem_Read -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 296 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux44 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Wire0 1
+netloc simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Read 1 0 1 400
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[13]} -attr @name {P_DataMem_Out[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 153 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[28]} -attr @name {P_InstMem_Address[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 267 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 2
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[24]} -attr @name {Bus_InstMem_Address[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 240 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 8
+load net simulator::ArbitrationSubModule_Testbench,uut,_rtlConst_0 -attr @name _rtlConst_0 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux44 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux46 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux48 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 31 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux52 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux56 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 33 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux60 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux62 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux64 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 5 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux68 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 31 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux74 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 33 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux80 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux84 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 33
+netloc simulator::ArbitrationSubModule_Testbench,uut,_rtlConst_0 1 0 2 460 1380 970
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Write[2]} -attr @name {P_DataMem_Write[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 102 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 2 -pin simulator::ArbitrationSubModule_Testbench,uut,OR2 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[15]} -attr @name {P_DataMem_Address[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 119 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[3]} -attr @name {P_InstMem_In[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 326 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 62
+load net simulator::ArbitrationSubModule_Testbench,uut,_rtlConst_1 -attr @name _rtlConst_1 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux46 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux52 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux62 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux68 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux74 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux80 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_rtlConst_1 1 0 1 480
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[16]} -attr @name {P_InstMem_In[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 313 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 49
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[11]} -attr @name {P_InstMem_In[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 318 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 54
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[26]} -attr @name {Bus_DataMem_In[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 5 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[8]} -attr @name {Bus_DataMem_In[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 23 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[16]} -attr @name {Bus_InstMem_In[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 218 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[19]} -attr @name {Bus_InstMem_Address[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 245 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[16]} -attr @name {P_InstMem_Address[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 279 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[5]} -attr @name {P_InstMem_Address[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 290 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 25
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5512 -attr @name _cpiHT_56_5512 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 32 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5512 1 1 1 950
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[0]} -attr @name {P_DataMem_Address[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 134 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[0]} -attr @name {Bus_DataMem_In[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 31 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 32
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[16]} -attr @name {P_DataMem_Out[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 150 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[25]} -attr @name {Bus_DataMem_Out[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 74 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[21]} -attr @name {Bus_DataMem_Address[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 46 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[29]} -attr @name {Bus_DataMem_Address[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 38 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[25]} -attr @name {P_DataMem_In[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 173 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 40
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[12]} -attr @name {P_DataMem_In[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 186 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 53
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[24]} -attr @name {P_DataMem_Out[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 142 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 8
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[30]} -attr @name {P_DataMem_In[30]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 168 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 35
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[6]} -attr @name {P_DataMem_In[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 192 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 59
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[28]} -attr @name {P_InstMem_In[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 301 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 37
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[28]} -attr @name {P_DataMem_Address[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 106 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 2
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[15]} -attr @name {Bus_InstMem_Address[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 249 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[12]} -attr @name {P_InstMem_Address[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 283 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 18
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[12]} -attr @name {P_DataMem_Out[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 154 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[4]} -attr @name {Bus_InstMem_In[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 230 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[13]} -attr @name {Bus_DataMem_In[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 18 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[5]} -attr @name {Bus_InstMem_Address[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 259 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[27]} -attr @name {P_InstMem_Address[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 268 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Write[0]} -attr @name {Bus_DataMem_Write[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 37 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[19]} -attr @name {P_DataMem_Address[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 115 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Write[1]} -attr @name {P_DataMem_Write[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 103 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 3 -pin simulator::ArbitrationSubModule_Testbench,uut,OR4 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[25]} -attr @name {Bus_InstMem_Address[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 239 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[15]} -attr @name {P_InstMem_In[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 314 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 50
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[10]} -attr @name {P_InstMem_In[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 319 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 55
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[25]} -attr @name {Bus_DataMem_In[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 6 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[16]} -attr @name {P_DataMem_Address[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 118 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[13]} -attr @name {P_InstMem_Address[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 282 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[4]} -attr @name {P_InstMem_In[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 325 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 61
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[7]} -attr @name {Bus_DataMem_In[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 24 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 25
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[15]} -attr @name {P_DataMem_Out[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 151 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[17]} -attr @name {Bus_InstMem_In[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 217 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[20]} -attr @name {Bus_DataMem_Address[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 47 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[24]} -attr @name {Bus_DataMem_Out[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 75 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[22]} -attr @name {Bus_InstMem_In[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 212 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 10
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4968 -attr @name _cpiHT_56_4968 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux60 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux64 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4968 1 1 1 990
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[1]} -attr @name {P_DataMem_Address[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 133 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 29
+load net simulator::ArbitrationSubModule_Testbench,uut,D_Bus_RQ -attr @name D_Bus_RQ -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 201 -pin simulator::ArbitrationSubModule_Testbench,uut,OR6 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,D_Bus_RQ 1 4 1 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[18]} -attr @name {Bus_DataMem_In[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 13 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[26]} -attr @name {P_DataMem_In[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 172 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 39
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[25]} -attr @name {P_DataMem_Out[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 141 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[15]} -attr @name {P_DataMem_In[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 183 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 50
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[27]} -attr @name {P_DataMem_Address[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 107 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[11]} -attr @name {P_DataMem_Out[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 155 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[3]} -attr @name {Bus_InstMem_In[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 231 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 29
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[20]} -attr @name {Bus_DataMem_Out[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 79 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[12]} -attr @name {Bus_DataMem_In[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 19 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[4]} -attr @name {Bus_InstMem_Address[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 260 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[26]} -attr @name {P_InstMem_Address[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 269 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[21]} -attr @name {P_InstMem_Address[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 274 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[22]} -attr @name {Bus_InstMem_Address[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 242 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[13]} -attr @name {P_DataMem_Address[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 121 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Write[0]} -attr @name {P_DataMem_Write[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 104 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 4 -pin simulator::ArbitrationSubModule_Testbench,uut,OR6 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[18]} -attr @name {Bus_InstMem_Address[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 246 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[14]} -attr @name {P_InstMem_In[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 315 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 51
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[24]} -attr @name {Bus_DataMem_In[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 7 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 8
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[10]} -attr @name {Bus_InstMem_Address[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 254 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[31]} -attr @name {P_DataMem_Out[31]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 135 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[6]} -attr @name {Bus_DataMem_In[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 25 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[1]} -attr @name {P_DataMem_Out[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 165 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 31
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[14]} -attr @name {Bus_InstMem_In[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 220 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 18
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[14]} -attr @name {P_InstMem_Address[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 281 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[23]} -attr @name {Bus_DataMem_Out[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 76 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[21]} -attr @name {Bus_InstMem_In[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 213 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[23]} -attr @name {P_DataMem_In[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 175 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 42
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5240 -attr @name _cpiHT_56_5240 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 6 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5240 1 1 1 930
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[9]} -attr @name {P_InstMem_In[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 320 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 56
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[19]} -attr @name {Bus_DataMem_In[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 12 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[21]} -attr @name {P_DataMem_Address[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 113 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[14]} -attr @name {P_DataMem_In[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 184 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 51
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[8]} -attr @name {Bus_DataMem_Out[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 91 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[26]} -attr @name {P_DataMem_Address[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 108 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[10]} -attr @name {P_InstMem_Address[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 285 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[2]} -attr @name {Bus_InstMem_In[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 232 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[6]} -attr @name {P_DataMem_Address[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 128 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[3]} -attr @name {Bus_InstMem_Address[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 261 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 29
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[25]} -attr @name {P_InstMem_Address[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 270 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[20]} -attr @name {P_InstMem_Address[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 275 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[17]} -attr @name {P_DataMem_Address[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 117 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[21]} -attr @name {Bus_DataMem_Out[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 78 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[17]} -attr @name {Bus_InstMem_Address[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 247 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[23]} -attr @name {Bus_InstMem_Address[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 241 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[13]} -attr @name {P_InstMem_In[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 316 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 52
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_20144 -attr @name _cpiHT_56_20144 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,OR0 2 -pin simulator::ArbitrationSubModule_Testbench,uut,OR2 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_20144 1 1 1 N
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[13]} -attr @name {Bus_DataMem_Out[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 86 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[23]} -attr @name {Bus_DataMem_In[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 8 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[14]} -attr @name {P_DataMem_Address[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 120 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[28]} -attr @name {Bus_InstMem_In[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 206 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[5]} -attr @name {Bus_DataMem_In[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 26 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[0]} -attr @name {P_DataMem_Out[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 166 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 32
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[15]} -attr @name {Bus_InstMem_In[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 219 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[22]} -attr @name {Bus_DataMem_Out[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 77 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[0]} -attr @name {Bus_InstMem_In[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 234 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 32
+load net simulator::ArbitrationSubModule_Testbench,uut,I_Bus_RQ -attr @name I_Bus_RQ -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 331 -pin simulator::ArbitrationSubModule_Testbench,uut,Wire0 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,I_Bus_RQ 1 1 4 NJ 1510 NJ 1510 NJ 1510 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[7]} -attr @name {Bus_DataMem_Address[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 60 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 25
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[24]} -attr @name {P_DataMem_In[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 174 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 41
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[21]} -attr @name {Bus_DataMem_In[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 10 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[19]} -attr @name {P_InstMem_Address[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 276 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[8]} -attr @name {P_InstMem_Address[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 287 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[3]} -attr @name {Bus_DataMem_In[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 28 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 29
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[20]} -attr @name {P_DataMem_Address[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 114 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[1]} -attr @name {Bus_InstMem_In[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 233 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 31
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[9]} -attr @name {Bus_DataMem_Out[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 90 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 25
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[2]} -attr @name {Bus_InstMem_Address[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 262 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[24]} -attr @name {P_InstMem_Address[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 271 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[20]} -attr @name {Bus_InstMem_Address[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 244 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[11]} -attr @name {P_DataMem_Address[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 123 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[7]} -attr @name {P_DataMem_Address[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 127 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 23
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4424 -attr @name _cpiHT_56_4424 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux44 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux48 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4424 1 1 1 990
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[12]} -attr @name {P_InstMem_In[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 317 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 53
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[18]} -attr @name {P_DataMem_Address[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 116 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[27]} -attr @name {Bus_InstMem_In[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 207 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[12]} -attr @name {Bus_InstMem_In[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 222 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[14]} -attr @name {Bus_DataMem_Out[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 85 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 20
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5920 -attr @name _cpiHT_56_5920 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux80 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5920 1 1 1 970
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[19]} -attr @name {Bus_DataMem_Address[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 48 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[0]} -attr @name {Bus_InstMem_Address[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 264 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 32
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[21]} -attr @name {P_DataMem_In[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 177 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 44
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[6]} -attr @name {Bus_DataMem_Address[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 61 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[7]} -attr @name {P_InstMem_In[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 322 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 58
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[2]} -attr @name {P_InstMem_Address[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 293 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[0]} -attr @name {Bus_DataMem_Address[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 67 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 32
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[22]} -attr @name {Bus_DataMem_In[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 9 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[9]} -attr @name {P_InstMem_Address[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 286 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[21]} -attr @name {P_InstMem_In[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 308 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 44
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[4]} -attr @name {P_DataMem_Address[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 130 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[4]} -attr @name {Bus_DataMem_In[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 27 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[23]} -attr @name {P_InstMem_Address[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 272 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[29]} -attr @name {Bus_DataMem_Out[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 70 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[31]} -attr @name {Bus_DataMem_In[31]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[28]} -attr @name {P_DataMem_Out[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 138 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[21]} -attr @name {Bus_InstMem_Address[21]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 243 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 11
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[12]} -attr @name {P_DataMem_Address[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 122 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 18
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5376 -attr @name _cpiHT_56_5376 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux68 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5376 1 1 1 N
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4696 -attr @name _cpiHT_56_4696 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 32 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4696 1 1 1 N
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[12]} -attr @name {Bus_DataMem_Out[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 87 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[13]} -attr @name {Bus_InstMem_In[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 221 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[8]} -attr @name {Bus_InstMem_In[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 226 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[13]} -attr @name {Bus_DataMem_Address[13]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 54 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[18]} -attr @name {Bus_DataMem_Address[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 49 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 14
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[15]} -attr @name {Bus_DataMem_Out[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 84 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 19
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[9]} -attr @name {Bus_InstMem_Address[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 255 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[1]} -attr @name {Bus_InstMem_Address[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 263 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 31
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[1]} -attr @name {P_InstMem_In[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 328 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 64
+load net simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Ready -attr @name P_DataMem_Ready -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 199 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux84 3
+netloc simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Ready 1 1 4 NJ 540 NJ 540 NJ 540 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[22]} -attr @name {P_DataMem_In[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 176 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 43
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[29]} -attr @name {Bus_DataMem_In[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 2 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[17]} -attr @name {P_InstMem_Address[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 278 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[8]} -attr @name {P_InstMem_In[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 321 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 57
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[1]} -attr @name {Bus_DataMem_In[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 30 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 31
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[11]} -attr @name {P_DataMem_In[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 187 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 54
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[9]} -attr @name {Bus_DataMem_Address[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 58 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[3]} -attr @name {P_InstMem_Address[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 292 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[19]} -attr @name {P_DataMem_Out[19]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 147 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 13
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[22]} -attr @name {P_InstMem_Address[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 273 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 8
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[0]} -attr @name {P_DataMem_In[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 198 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 65
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[28]} -attr @name {Bus_DataMem_Out[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 71 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[1]} -attr @name {Bus_DataMem_Address[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 66 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 31
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[22]} -attr @name {P_InstMem_In[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 307 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 43
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[5]} -attr @name {P_DataMem_Address[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 129 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 25
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[22]} -attr @name {P_DataMem_Out[22]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 144 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 10
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[30]} -attr @name {Bus_DataMem_In[30]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 2
+load net simulator::ArbitrationSubModule_Testbench,uut,I_Bus_GRANT -attr @name I_Bus_GRANT -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 330 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux44 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux46 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux52 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux56 0 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,I_Bus_GRANT 1 0 1 440
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[29]} -attr @name {P_DataMem_Out[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 137 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[10]} -attr @name {Bus_InstMem_In[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 224 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[31]} -attr @name {P_InstMem_In[31]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 298 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 34
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[9]} -attr @name {P_DataMem_Out[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 157 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[11]} -attr @name {Bus_DataMem_Out[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 88 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[10]} -attr @name {P_DataMem_Out[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 156 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 22
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[7]} -attr @name {Bus_InstMem_In[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 227 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 25
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[17]} -attr @name {Bus_DataMem_Address[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 50 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[8]} -attr @name {Bus_InstMem_Address[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 256 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[29]} -attr @name {Bus_InstMem_In[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 205 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[16]} -attr @name {Bus_DataMem_Out[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 83 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 18
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[14]} -attr @name {Bus_DataMem_Address[14]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 53 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 18
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[28]} -attr @name {Bus_DataMem_In[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[0]} -attr @name {P_InstMem_Address[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 295 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[2]} -attr @name {P_InstMem_In[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 327 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 63
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[10]} -attr @name {P_DataMem_In[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 188 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 55
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[5]} -attr @name {P_DataMem_Out[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 161 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Write[1]} -attr @name {Bus_DataMem_Write[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 36 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[8]} -attr @name {Bus_DataMem_Address[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 59 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[20]} -attr @name {Bus_DataMem_In[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 11 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[18]} -attr @name {P_InstMem_Address[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 277 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[29]} -attr @name {P_InstMem_In[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 300 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 36
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[24]} -attr @name {Bus_DataMem_Address[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 43 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 8
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[2]} -attr @name {Bus_DataMem_In[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 29 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[27]} -attr @name {Bus_DataMem_Out[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 72 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 7
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_15384 -attr @name _cpiHT_56_15384 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,OR4 2 -pin simulator::ArbitrationSubModule_Testbench,uut,OR6 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_15384 1 3 1 1570
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[2]} -attr @name {Bus_DataMem_Address[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 65 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 30
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[1]} -attr @name {P_DataMem_In[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 197 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 64
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[23]} -attr @name {P_InstMem_In[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 306 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 42
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[10]} -attr @name {P_DataMem_Address[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 124 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[16]} -attr @name {Bus_DataMem_In[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 15 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[23]} -attr @name {P_DataMem_Out[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 143 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[24]} -attr @name {Bus_InstMem_In[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 210 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 8
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[30]} -attr @name {P_InstMem_In[30]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 299 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 35
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[8]} -attr @name {P_DataMem_Out[8]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 158 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[25]} -attr @name {P_DataMem_Address[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 109 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 5
+load net simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Read -attr @name P_DataMem_Read -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 100 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux60 1 -pin simulator::ArbitrationSubModule_Testbench,uut,OR0 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Read 1 0 1 400
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[12]} -attr @name {Bus_InstMem_Address[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 252 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[31]} -attr @name {Bus_DataMem_Out[31]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 68 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 3
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[10]} -attr @name {Bus_DataMem_Out[10]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 89 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 24
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[11]} -attr @name {Bus_InstMem_In[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 223 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[6]} -attr @name {Bus_InstMem_In[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 228 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 26
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[16]} -attr @name {Bus_DataMem_Address[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 51 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[11]} -attr @name {Bus_DataMem_Address[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 56 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[7]} -attr @name {Bus_InstMem_Address[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 257 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 25
+load net simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Ready -attr @name P_InstMem_Ready -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 297 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux56 3
+netloc simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Ready 1 1 4 NJ 1590 NJ 1590 NJ 1590 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[17]} -attr @name {P_DataMem_In[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 181 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 48
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Write[3]} -attr @name {P_DataMem_Write[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 101 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux66 1 -pin simulator::ArbitrationSubModule_Testbench,uut,OR0 1
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[20]} -attr @name {P_DataMem_In[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 178 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 45
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[1]} -attr @name {Bus_DataMem_Out[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 98 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 33
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[27]} -attr @name {Bus_DataMem_In[27]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 4 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 5
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[17]} -attr @name {Bus_DataMem_Out[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 82 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[9]} -attr @name {Bus_DataMem_In[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 22 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[4]} -attr @name {P_DataMem_Out[4]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 162 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[1]} -attr @name {P_InstMem_Address[1]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 294 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux50 29
+load net simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Ready -attr @name Bus_InstMem_Ready -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 202 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux56 1
+netloc simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Ready 1 0 1 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[9]} -attr @name {Bus_InstMem_In[9]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 225 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 23
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[26]} -attr @name {Bus_DataMem_Out[26]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 73 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 8
+load net simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Read -attr @name Bus_InstMem_Read -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 265 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux48 3
+netloc simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Read 1 2 3 NJ 1380 NJ 1380 NJ
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Write[2]} -attr @name {Bus_DataMem_Write[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 35 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux70 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[25]} -attr @name {Bus_DataMem_Address[25]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 42 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 7
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[28]} -attr @name {Bus_InstMem_Address[28]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 236 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 4
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[20]} -attr @name {P_DataMem_Out[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 146 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 12
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[3]} -attr @name {Bus_DataMem_Address[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 64 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 29
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[2]} -attr @name {P_DataMem_In[2]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 196 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 63
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[23]} -attr @name {Bus_InstMem_In[23]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 211 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 9
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[24]} -attr @name {P_InstMem_In[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 305 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 41
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_17496 -attr @name _cpiHT_56_17496 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,OR2 2 -pin simulator::ArbitrationSubModule_Testbench,uut,OR4 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_17496 1 2 1 N
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[17]} -attr @name {Bus_DataMem_In[17]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 14 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 15
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[6]} -attr @name {Bus_DataMem_Out[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 93 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 28
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[7]} -attr @name {P_DataMem_Out[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 159 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 25
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[24]} -attr @name {P_DataMem_Address[24]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 110 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux72 6
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[11]} -attr @name {Bus_InstMem_Address[11]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 253 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 21
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[5]} -attr @name {Bus_InstMem_In[5]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 229 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 27
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[15]} -attr @name {Bus_DataMem_Address[15]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 52 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 17
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[30]} -attr @name {Bus_InstMem_In[30]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 204 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 2
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[6]} -attr @name {Bus_InstMem_Address[6]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 258 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux54 26
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4560 -attr @name _cpiHT_56_4560 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux46 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux48 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_4560 1 1 1 N
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5784 -attr @name _cpiHT_56_5784 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 34 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 2
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5784 1 1 1 930
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[12]} -attr @name {Bus_DataMem_Address[12]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 55 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux76 20
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[29]} -attr @name {P_DataMem_In[29]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 169 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 36
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[16]} -attr @name {P_DataMem_In[16]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 182 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 49
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[0]} -attr @name {Bus_DataMem_Out[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 99 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 34
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[20]} -attr @name {P_InstMem_In[20]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 309 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 45
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[0]} -attr @name {P_InstMem_In[0]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 329 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux58 65
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[3]} -attr @name {P_DataMem_Out[3]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 163 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux78 29
+load net {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[18]} -attr @name {Bus_DataMem_Out[18]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 81 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux82 16
+load net {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[7]} -attr @name {P_DataMem_In[7]} -attr @color #666666.1 -hierPin simulator::ArbitrationSubModule_Testbench,uut 191 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux86 58
+load net simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5104 -attr @name _cpiHT_56_5104 -attr @color #666666.1 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux62 3 -pin simulator::ArbitrationSubModule_Testbench,uut,Mux64 0
+netloc simulator::ArbitrationSubModule_Testbench,uut,_cpiHT_56_5104 1 1 1 N
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[29:0]} g30 -attr @name {P_DataMem_Address[29:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Address[29:0]} 1 0 1 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[31:0]} g32 -attr @name {Bus_InstMem_In[31:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_In[31:0]} 1 0 1 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[29:0]} g30 -attr @name {Bus_DataMem_Address[29:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Address[29:0]} 1 2 3 NJ 410 NJ 410 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[31:0]} g32 -attr @name {Bus_DataMem_In[31:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_In[31:0]} 1 0 1 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Write[3:0]} g4 -attr @name {Bus_DataMem_Write[3:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Write[3:0]} 1 2 3 NJ 670 NJ 670 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[31:0]} g32 -attr @name {Bus_DataMem_Out[31:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,Bus_DataMem_Out[31:0]} 1 2 3 NJ 330 NJ 330 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[31:0]} g32 -attr @name {P_DataMem_In[31:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_In[31:0]} 1 1 4 NJ 450 NJ 450 NJ 450 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Write[3:0]} g4 -attr @name {P_DataMem_Write[3:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Write[3:0]} 1 0 4 420 990 990 1000 1360 1040 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[29:0]} g30 -attr @name {Bus_InstMem_Address[29:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,Bus_InstMem_Address[29:0]} 1 2 3 NJ 1060 NJ 1060 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[29:0]} g30 -attr @name {P_InstMem_Address[29:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_Address[29:0]} 1 0 1 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[31:0]} g32 -attr @name {P_DataMem_Out[31:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,P_DataMem_Out[31:0]} 1 0 1 NJ
+load netBundle {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[31:0]} g32 -attr @name {P_InstMem_In[31:0]} -attr @color #666666.1
+netbloc {simulator::ArbitrationSubModule_Testbench,uut,P_InstMem_In[31:0]} 1 1 4 NJ 1160 NJ 1160 NJ 1160 NJ
+levelinfo -pg 1 0 230 2240
+levelinfo -hier simulator::ArbitrationSubModule_Testbench,uut 240 700 1130 1500 1710 1990
+highlight -append -subl 0 -itemized {net simulator::ArbitrationSubModule_Testbench,uut,_rtlConst_0}
+show
+zoom 0.446145
+scrollpos -47 -47
+#
+# initialize ictrl to current module root {}
+ictrl init {} ,
+}
+
+#
+# Console windows
+#
+console set -windowname Console
+window geometry Console 730x250+261+564
+
+#
+# Layout selection
+#
+

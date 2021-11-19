@@ -1,0 +1,6 @@
+General information about this run 
+-- piranha worklib.ArbitrationSubModule_Testbench:module
+-- TOOL:	cfe64	15.20.038-s(15.20.s038)
+-- cfe64 Build : Wed Oct 18 00:02:45 IST 2017 ldvopt215
+-- Options : +TOOLNAME halsynth -HAL ALL -BB_SIG_SIZE 16384 +DISABLE -MULTI_DRIVEN_REG TRI -NOLOG +PRIM_TRI +FSM_RULE_CHECKS -SYNTHESIS ALL -IGNORE_COMB_INIT -VITAL_BLACKBOX +MDARRAY_ON -DEFINES /eda/cadence/2017-18/RHELx86/INCISIVE_15.20.038/tools/hal/files/hal.def -DUMP +RULES_LIST +HAL_SIDEFILE hal.log -PRAGMA ALL -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib worklib.ArbitrationSubModule_Testbench:module
+-- SMV File is :/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/INCA_libs/worklib/ArbitrationSubModule_Testbench/module/ArbitrationSubModule_Testbench.smv

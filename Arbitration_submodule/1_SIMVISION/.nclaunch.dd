@@ -14,7 +14,7 @@ ToolOption_irun {-gui {} +linedebug +access rwc -q} \
 ToolOption_NCElab { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncelab.log -errormax 15 -access +wc -status -timescale 1ns/1ps} \
 ToolOption_NCSim { -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status} \
 ToolOption_NCSdfc {-logfile ncsdfc.log -compile -status} \
-ToolOption_HAL {-logfile hal.log} \
+ToolOption_HAL { -logfile hal.log -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib} \
 ToolOption_SimVision {} \
 ToolOption_Update {-errormax 15 -force} \
 ToolOption_SimCompare {} \
@@ -32,7 +32,7 @@ ToolOption_irun {-gui {} +linedebug +access rwc -q} \
 ToolOption_NCElab { -work worklib -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncelab.log -errormax 15 -access +wc -status -timescale 1ns/1ps} \
 ToolOption_NCSim { -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status} \
 ToolOption_NCSdfc {-logfile ncsdfc.log -compile -status} \
-ToolOption_HAL {-logfile hal.log} \
+ToolOption_HAL { -logfile hal.log -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib} \
 ToolOption_SimVision {} \
 ToolOption_Update {-errormax 15 -force} \
 ToolOption_SimCompare {} \

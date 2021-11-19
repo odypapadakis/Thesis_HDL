@@ -6,4 +6,16 @@ ncsim: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx
 -------------------------------------
 Relinquished control to SimVision...
 ncsim> 
-ncsim> 
+ncsim> database -open waves -into waves.shm -default
+Created default SHM database waves
+ncsim> probe -create -shm ArbitrationSubModule_Testbench.clk ArbitrationSubModule_Testbench.reset ArbitrationSubModule_Testbench.tb_I_Bus_Arbiter_GRANT ArbitrationSubModule_Testbench.tb_I_Bus_RQ ArbitrationSubModule_Testbench.tb_P_InstMem_Address ArbitrationSubModule_Testbench.tb_P_InstMem_Read ArbitrationSubModule_Testbench.tb_P_InstMem_Ready ArbitrationSubModule_Testbench.tb_P_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Address ArbitrationSubModule_Testbench.tb_Bus_InstMem_Read ArbitrationSubModule_Testbench.tb_Bus_InstMem_In ArbitrationSubModule_Testbench.tb_Bus_InstMem_Ready ArbitrationSubModule_Testbench.uut.I_Bus_RQ ArbitrationSubModule_Testbench.uut.I_Bus_GRANT ArbitrationSubModule_Testbench.uut.P_InstMem_Address ArbitrationSubModule_Testbench.uut.P_InstMem_Read ArbitrationSubModule_Testbench.uut.P_InstMem_In ArbitrationSubModule_Testbench.uut.P_InstMem_Ready
+Created probe 1
+ncsim> run 1.2us
+-----------------------------------------		Instruction initial block	-------------------------------
+Ran until 1200 NS + 0
+ncsim> run 1.2us
+Ran until 2400 NS + 0
+ncsim> ^C
+ncsim> exit
+ncsim: Memory Usage - 38.5M program + 60.1M data = 98.7M total (102.2M Peak)
+ncsim: CPU Usage - 8.8s system + 2.4s user = 11.2s total (518.9s, 2.2% cpu)

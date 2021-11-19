@@ -423,16 +423,25 @@ initial		// Instruction initial block
 		clk = 0;
 		reset = 1;
 
-
-		// Processor is Idle and does not wan to read anything.
+		// Processor is Idle and does want to read from the Instruction Memory.
 		tb_P_InstMem_Address	= 'h1;
 		tb_P_InstMem_Read		= 1'b0; 
+
 
 		// System is running
 		#100 reset = 0;
 
 
 
+	end
+
+initial
+	begin
+		
+		#100;
+
+
+		//-- INSTRUCTION REQUEST   simulated here
 		// Processor wants the Instruction at address 5
 		#200 tb_P_InstMem_Address	= 32'd5;	
 		#50 tb_P_InstMem_Read = 1'b1;
@@ -440,17 +449,21 @@ initial		// Instruction initial block
 		// Processor no longer need the instruction
 		#500 tb_P_InstMem_Read = 1'b0;
 
-
-
-
-
-
+		// Data request simulated here 		
 	end
+
+
+
+
+
+
+
+
 
 
 
 always #50 clk = !clk;
 	
-always #10 heartbeat = !heartbeat;	
+always #300 heartbeat = !heartbeat;	
 
 endmodule

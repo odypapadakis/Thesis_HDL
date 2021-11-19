@@ -97,7 +97,7 @@ ArbitrationSubModule uut(
 
 
 
-//uut signals 			// Testbench signals
+	//uut signals 			// Testbench signals
 
 
 //Data Bus signal connections
@@ -144,12 +144,12 @@ ArbitrationSubModule uut(
 
 //   -----------------------   Instruction  stuff ----------------------------------------------------------------------------
 
-reg [1:0] Pseudo_D_Arbiter_Current_State,Pseudo_D_Arbiter_Next_State ;
+reg [1:0] Pseudo_I_Arbiter_Current_State,Pseudo_I_Arbiter_Next_State ;
 
-localparam	Pseudo_D_Arbiter_State_Idle 			= 2'b00 ;
-localparam	Pseudo_D_Arbiter_State_RQ_HIGH 			= 2'b01 ;
-localparam	Pseudo_D_Arbiter_State_RQ_LOW 			= 2'b10 ;
-localparam	Pseudo_D_Arbiter_State_Wait_MEM_LOW 	= 2'b11 ;
+localparam	Pseudo_I_Arbiter_State_Idle 			= 2'b00 ;
+localparam	Pseudo_I_Arbiter_State_RQ_HIGH 			= 2'b01 ;
+localparam	Pseudo_I_Arbiter_State_RQ_LOW 			= 2'b10 ;
+localparam	Pseudo_I_Arbiter_State_Wait_MEM_LOW 	= 2'b11 ;
 
 
 
@@ -157,9 +157,9 @@ localparam	Pseudo_D_Arbiter_State_Wait_MEM_LOW 	= 2'b11 ;
 
 always@(posedge clk or posedge reset) 
 	if(reset)
-		Pseudo_D_Arbiter_Current_State <= Pseudo_D_Arbiter_State_Idle ; // On reset, go to the Idle state
+		Pseudo_I_Arbiter_Current_State <= Pseudo_I_Arbiter_State_Idle ; // On reset, go to the Idle state
 	else
-		Pseudo_D_Arbiter_Current_State <= Pseudo_D_Arbiter_Next_State ; // If not resetting, start sequencing the states
+		Pseudo_I_Arbiter_Current_State <= Pseudo_I_Arbiter_Next_State ; // If not resetting, start sequencing the states
 
 
 
@@ -167,40 +167,40 @@ always@(posedge clk or posedge reset)
 //	Pseudo Instruction Arbiter combinational always Block
 always@(*)
 begin
-	case(Pseudo_D_Arbiter_Current_State)
+	case(Pseudo_I_Arbiter_Current_State)
 //------------------------------------------------------------------------------------------
-	Pseudo_D_Arbiter_State_Idle: 	
+	Pseudo_I_Arbiter_State_Idle: 	
 		begin
 			tb_I_Bus_Arbiter_GRANT = 1'b0; // The bus is busy , therefore the arbiter drives the grant signal low.
 
 			// If there is a request  and memory is ready
 			if( (tb_I_Bus_RQ == 1'b1)  && (tb_Bus_InstMem_Ready == 1'b0) )  
-				#50 Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_RQ_HIGH;
+				#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;
 			else
-				Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_Idle;
+				Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle;
 
 		end	
 //------------------------------------------------------------------------------------------
-	Pseudo_D_Arbiter_State_RQ_HIGH:
+	Pseudo_I_Arbiter_State_RQ_HIGH:
 		begin
 			#50  tb_I_Bus_Arbiter_GRANT = 1'b1;
 
 			if(tb_I_Bus_RQ == 1'b0)
 				begin
-					#50 Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_RQ_LOW  ;
+					#50 Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_LOW  ;
 				end
 			else
-				Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_RQ_HIGH;	
+				Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_RQ_HIGH;	
 			end
 //------------------------------------------------------------------------------------------
-	Pseudo_D_Arbiter_State_RQ_LOW:
+	Pseudo_I_Arbiter_State_RQ_LOW:
 		begin	
 			#50  tb_I_Bus_Arbiter_GRANT = 1'b0;
-			#50  Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_Idle  ;
+			#50  Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle  ;
 					
 		end
 //------------------------------------------------------------------------------------------
-	// Pseudo_D_Arb_State_Wait_MEM_LOW:
+	// Pseudo_I_Arb_State_Wait_MEM_LOW:
 	// 	begin	
 	// 		if(tb_Bus_InstMem_Ready == 1'b0)
 	// 			begin
@@ -210,7 +210,7 @@ begin
 //------------------------------------------------------------------------------------------
 	default:
 		begin
-			Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_Idle ;
+			Pseudo_I_Arbiter_Next_State = Pseudo_I_Arbiter_State_Idle ;
 			tb_I_Bus_Arbiter_GRANT = 1'b0;
 		end
 
@@ -220,11 +220,11 @@ end
 
 
 
-reg [1:0] Pseudo_D_Memory_Current_State,Pseudo_D_Memory_Next_State ;
+reg [1:0] Pseudo_I_Memory_Current_State,Pseudo_I_Memory_Next_State ;
 
-localparam	Pseudo_D_Memory_State_Idle 			= 2'b00 ;
-localparam	Pseudo_D_Memory_State_Read_HIGH 		= 2'b01 ;
-//localparam	Pseudo_D_Memory_State_Wait_MEM_LOW 	= 2'b11 ;
+localparam	Pseudo_I_Memory_State_Idle 			= 2'b00 ;
+localparam	Pseudo_I_Memory_State_Read_HIGH 		= 2'b01 ;
+//localparam	Pseudo_I_Memory_State_Wait_MEM_LOW 	= 2'b11 ;
 
 
 
@@ -232,9 +232,9 @@ localparam	Pseudo_D_Memory_State_Read_HIGH 		= 2'b01 ;
 
 always@(posedge clk or posedge reset) 
 	if(reset)
-		Pseudo_D_Memory_Current_State <= Pseudo_D_Memory_State_Idle ; // On reset, go to the Idle state
+		Pseudo_I_Memory_Current_State <= Pseudo_I_Memory_State_Idle ; // On reset, go to the Idle state
 	else
-		Pseudo_D_Memory_Current_State <= Pseudo_D_Memory_Next_State ; // If not resetting, start sequencing the states
+		Pseudo_I_Memory_Current_State <= Pseudo_I_Memory_Next_State ; // If not resetting, start sequencing the states
 
 
 
@@ -242,9 +242,9 @@ always@(posedge clk or posedge reset)
 //	Pseudo Instruction Memory combinational always Block
 always@(*)
 begin
-	case(Pseudo_D_Memory_Current_State)
+	case(Pseudo_I_Memory_Current_State)
 //------------------------------------------------------------------------------------------
-	Pseudo_D_Memory_State_Idle: 	
+	Pseudo_I_Memory_State_Idle: 	
 		begin
 			// When Idle Drive the Instruction Bus with 001 
 			#50 tb_Bus_InstMem_In = 32'd1;
@@ -255,13 +255,13 @@ begin
 
 			// When the read signal goes high
 			if( (tb_Bus_InstMem_Read == 1'b1) )
-				#50 Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Read_HIGH;
+				#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Read_HIGH;
 			else
-				Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Idle;
+				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle;
 
 		end	
 //------------------------------------------------------------------------------------------
-	Pseudo_D_Memory_State_Read_HIGH:
+	Pseudo_I_Memory_State_Read_HIGH:
 		begin
 			// Add 4 to the Address and return it as data
 			#50 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
@@ -272,15 +272,15 @@ begin
 			// When the read signal goes low move on to Idle
 			if(tb_Bus_InstMem_Read == 1'b0)
 				begin
-					#50 Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Idle  ;
+					#50 Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle  ;
 				end
 			else
-				Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Read_HIGH;	
+				Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Read_HIGH;	
 			end
 //------------------------------------------------------------------------------------------
 	default:
 		begin
-			Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Idle ;
+			Pseudo_I_Memory_Next_State = Pseudo_I_Memory_State_Idle ;
 		end
 
 	endcase	
@@ -322,7 +322,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_D_Arbiter_State_Idle: 	
 		begin
-			tb_D_Bus_Arbiter_GRANT = 1'b0; // The bus is busy , therefore the arbiter drives the grant signal low.
+			tb_D_Bus_GRANT = 1'b0; // The bus is busy , therefore the arbiter drives the grant signal low.
 
 			// If there is a request  and memory is ready
 			if( (tb_D_Bus_RQ == 1'b1)  && (tb_Bus_DataMem_Ready == 1'b0) )  
@@ -334,9 +334,9 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_D_Arbiter_State_RQ_HIGH:
 		begin
-			#50  tb_I_Bus_Arbiter_GRANT = 1'b1;
+			#50  tb_D_Bus_GRANT = 1'b1;
 
-			if(tb_I_Bus_RQ == 1'b0)
+			if(tb_D_Bus_RQ == 1'b0)
 				begin
 					#50 Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_RQ_LOW  ;
 				end
@@ -346,7 +346,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_D_Arbiter_State_RQ_LOW:
 		begin	
-			#50  tb_I_Bus_Arbiter_GRANT = 1'b0;
+			#50  tb_D_Bus_GRANT = 1'b0;
 			#50  Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_Idle  ;
 					
 		end
@@ -362,7 +362,7 @@ begin
 	default:
 		begin
 			Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_Idle ;
-			tb_I_Bus_Arbiter_GRANT = 1'b0;
+			tb_D_Bus_GRANT = 1'b0;
 		end
 
 	endcase	
@@ -379,7 +379,7 @@ localparam	Pseudo_D_Memory_State_Read_HIGH 		= 2'b01 ;
 
 
 
-//	Pseudo Instruction Memory Sequential always Block
+//	Pseudo Data Memory Sequential always Block
 
 always@(posedge clk or posedge reset) 
 	if(reset)
@@ -390,7 +390,7 @@ always@(posedge clk or posedge reset)
 
 
 
-//	Pseudo Instruction Memory combinational always Block
+//	Pseudo Data Memory combinational always Block
 always@(*)
 begin
 	case(Pseudo_D_Memory_Current_State)
@@ -398,14 +398,14 @@ begin
 	Pseudo_D_Memory_State_Idle: 	
 		begin
 			// When Idle Drive the Instruction Bus with 001 
-			#50 tb_Bus_InstMem_In = 32'd1;
+			#50 tb_Bus_DataMem_In = 32'd1;
 
 			// And show that the data is not valid 
-			#25 tb_Bus_InstMem_Ready = 0'b0;
+			#25 tb_Bus_DataMem_Ready = 0'b0;
 
 
 			// When the read signal goes high
-			if( (tb_Bus_InstMem_Read == 1'b1) )
+			if( (tb_Bus_DataMem_Read == 1'b1) )
 				#50 Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Read_HIGH;
 			else
 				Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Idle;
@@ -415,13 +415,13 @@ begin
 	Pseudo_D_Memory_State_Read_HIGH:
 		begin
 			// Add 4 to the Address and return it as data
-			#50 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
+			#50 tb_Bus_DataMem_In = tb_Bus_DataMem_Address + 32'd4;
 
 			// Raise the ready signal, to inform that the data being served is valid
-			#50 tb_Bus_InstMem_Ready = 1'b1;
+			#50 tb_Bus_DataMem_Ready = 1'b1;
 
 			// When the read signal goes low move on to Idle
-			if(tb_Bus_InstMem_Read == 1'b0)
+			if(tb_Bus_DataMem_Read == 1'b0)
 				begin
 					#50 Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Idle  ;
 				end

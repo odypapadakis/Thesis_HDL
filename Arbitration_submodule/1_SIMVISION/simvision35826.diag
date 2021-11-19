@@ -512,3 +512,33 @@ attribute: cannot find pinBus simulator::ArbitrationSubModule_Testbench,uut,Mux4
 When: Sat Nov 20 01:26:08 EET 2021
 Delete schematic window: "Schematic Tracer 1"
  
+*** Message Type: info ***
+When: Sat Nov 20 01:26:48 EET 2021
+Exit NC-Sim: user
+      Design: worklib.ArbitrationSubModule_Testbench:module
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:      ncsim(64)       15.20-s038
+        User: papadako
+        Host: vlsi-lab06.ceid.upatras.gr
+Time Started: Sat Nov 20 00:34:21 EET 2021
+  Process ID: 54388
+   Directory: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION
+     Command: ncsim -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status worklib.ArbitrationSubModule_Testbench:module -tcl -update
+
+ 
+*** Message Type: info ***
+When: Sat Nov 20 01:33:28 EET 2021
+Exit NC-Sim: user
+      Design: worklib.ArbitrationSubModule_Testbench:module
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:      ncsim(64)       15.20-s038
+        User: papadako
+        Host: vlsi-lab06.ceid.upatras.gr
+Time Started: Sat Nov 20 01:30:49 EET 2021
+  Process ID: 57377
+   Directory: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION
+     Command: ncsim -gui -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib -logfile ncsim.log -errormax 15 -status worklib.ArbitrationSubModule_Testbench:module -tcl -update
+
+ 

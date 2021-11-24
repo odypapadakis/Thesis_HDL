@@ -35,4 +35,7 @@ ncsim> run 1us
 a is         55
 a is         83
 Ran until 1 US + 0
-ncsim> 
+ncsim> ^C
+ncsim> exit
+ncsim: Memory Usage - 38.5M program + 75.1M data = 113.6M total (117.6M Peak)
+ncsim: CPU Usage - 1.7s system + 0.6s user = 2.2s total (89.9s, 2.5% cpu)

@@ -22,6 +22,8 @@ module ArbitrationSubModule_Testbench;
 reg heartbeat;
 reg clk;
 reg reset;
+reg [32:0] a;
+
 
 
 // Pseudo CPU signals -----------------------------
@@ -447,7 +449,92 @@ end
 
 
 
+// -----------------------------------------------------------------------------------------
+//  -------------------------------   Pseudo Processor -------------------------------------- 
 
+
+
+reg [1:0] Pseudo_Processor_Current_State, Pseudo_Processor_Next_State;
+
+localparam Pseudo_Processor_State_Idle			= 2'b00;  
+localparam Pseudo_Processor_State_Raised_RQ 	= 2'b01;  
+localparam Pseudo_Processor_State_Read_Data  	= 2'b10;	
+//localparam Pseudo_Processor_State_Wait_Mem_LOW 	= 2'b11;
+
+
+
+
+
+always@(posedge clk or posedge reset) 
+	if(reset)
+		#1 Pseudo_Processor_Current_State <= Pseudo_Processor_State_Idle ; // On reset, go to the Idle state
+	else
+		#1 Pseudo_Processor_Current_State <= Pseudo_Processor_Next_State ; // If not resetting, start sequencing the states
+
+
+
+
+always@(*)
+begin
+	case(Pseudo_Processor_Current_State)
+//------------------------------------------------------------------------------------------
+	Pseudo_Processor_State_Idle: 	
+		begin
+		// For the instruction Bus
+		#5 tb_P_InstMem_Address		= 29'h0;
+		#5 tb_P_InstMem_Read		= 1'b0; 
+
+		// For the Data Bus
+		#5 tb_P_DataMem_Read 		= 1'b0;
+		#5 tb_P_DataMem_Write 		= 4'd0;
+
+		if(tb_Bus_DataMem_Ready == 1'b0 )
+			 Pseudo_Processor_Next_State = Pseudo_Processor_State_Raised_RQ;
+		else
+			Pseudo_Processor_Next_State = Pseudo_Processor_State_Idle;
+
+		end	
+
+//------------------------------------------------------------------------------------------
+	Pseudo_Processor_State_Raised_RQ: 	
+		begin
+		// For the instruction Bus
+		#5 tb_P_InstMem_Address		= 29'h004;
+		#5 tb_P_InstMem_Read		= 1'b1; 
+
+		// For the Data Bus
+		//tb_P_DataMem_Read 		= 1'b0;
+		//tb_P_DataMem_Write 		= 4'd0;
+
+		if (tb_Bus_DataMem_Ready == 1'b1 )
+		 Pseudo_Processor_Next_State = Pseudo_Processor_State_Read_Data;
+		else
+			Pseudo_Processor_Next_State = 	Pseudo_Processor_State_Read_Data;
+		end	
+
+//------------------------------------------------------------------------------------------
+	Pseudo_Processor_State_Read_Data:
+		begin
+			#250;
+
+			#50 tb_P_InstMem_Read		= 1'b1;
+
+			
+			if(tb_Bus_DataMem_Ready == 1'b0 )
+				Pseudo_Processor_Next_State = Pseudo_Processor_State_Idle;
+			else
+				Pseudo_Processor_Next_State = Pseudo_Processor_State_Read_Data;
+		end
+
+//--------------------------------------------------------------------------------------------
+	default:
+		begin
+			Pseudo_Processor_Next_State = Pseudo_Processor_State_Idle ;
+		end
+
+	endcase	
+
+end
 
 
 
@@ -458,7 +545,17 @@ end
 
 initial		// Initialization initial block 
 	begin
-		$display("Starting Simulation ");
+		$display(" ------------------------- Starting Simulation ------------------------- ");
+
+		a = 32'd55;
+		$display("a is %d",a);
+
+
+
+
+		a ={$urandom_range(50,100)};
+		$display("a is %d",a);
+
 
 		heartbeat = 0;
 		clk = 0;
@@ -466,20 +563,14 @@ initial		// Initialization initial block
 
 		// The defaults when idle shall be he following
 
-		// For the instruction Bus
-		tb_P_InstMem_Address	= 29'h1;
-		tb_P_InstMem_Read		= 1'b0; 
 
-		// For the Data Bus
-		tb_P_DataMem_Read 		= 1'b0;
-		tb_P_DataMem_Write 		= 4'd0;
 
 		tb_P_DataMem_Address 	= 29'h0001;
 		tb_P_DataMem_Out 		= 32'h0001;
 
 
 		// System is running
-		# 50 reset = 0;
+		# 45 reset = 0;
 
 
 
@@ -488,17 +579,17 @@ initial		// Initialization initial block
 initial		// Instruction Initial block
 	begin
 		
-		#50;  // After reset goes LOW
+	//	#50;  // After reset goes LOW
 
 		// Processor drives the Instruction Address to 5
-		#100 tb_P_InstMem_Address	= 29'd5;	
+	//	#100 tb_P_InstMem_Address	= 29'd5;	
 
 		// Processor Raised the Instruction Read Request Signal
-		#100 tb_P_InstMem_Read = 1'b1;
+	//	#100 tb_P_InstMem_Read = 1'b1;
 
 
 		// Processor Lowers the Instruction Request Signal
-		#300 tb_P_InstMem_Read = 1'b0;
+	//	#300 tb_P_InstMem_Read = 1'b0;
 		
 	end
 
@@ -506,14 +597,12 @@ initial		// Instruction Initial block
 initial	// Data Initial block
 	begin
 		
-		#100;
+	//	#100;
 
 
-		#200 tb_P_DataMem_Address	= 29'd005;
-		#100 tb_P_DataMem_Out		= 32'hf;
-		#50 tb_P_DataMem_Write		= 4'b1111;
-
-
+	//	#200 tb_P_DataMem_Address	= 29'd005;
+	//	#100 tb_P_DataMem_Out		= 32'hf;
+	//	#50 tb_P_DataMem_Write		= 4'b1111;
 
 
 	end

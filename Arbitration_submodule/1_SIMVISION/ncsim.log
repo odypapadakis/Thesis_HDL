@@ -10,18 +10,19 @@ include $CDS_INST_DIR/tools/inca/files/hdl.var
 ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 			#5 tb_Bus_InstMem_Ready = 0'b0;
 			                          |
-ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,253|29): zero width prefix to based number ignored [2.5(IEEE)].
+ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,255|29): zero width prefix to based number ignored [2.5(IEEE)].
 			#5 tb_Bus_DataMem_Ready = 0'b0;
 			                          |
-ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,407|29): zero width prefix to based number ignored [2.5(IEEE)].
+ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,409|29): zero width prefix to based number ignored [2.5(IEEE)].
 ncvlog: Memory Usage - 21.3M program + 27.9M data = 49.2M total
-ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 26.9% cpu)
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 26.4% cpu)
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncelab: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncvlog_cg: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
+SVSEED default: 1
 
 -------------------------------------
 Relinquished control to SimVision...
@@ -29,11 +30,9 @@ ncsim>
 ncsim> # Restoring simulation environment...
 ncsim> input -quiet .reinvoke.sim
 ncsim> file delete .reinvoke.sim
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.Pseudo_D_Arbiter_Current_State ArbitrationSubModule_Testbench.Pseudo_D_Arbiter_Next_State ArbitrationSubModule_Testbench.Pseudo_D_Memory_Current_State ArbitrationSubModule_Testbench.Pseudo_D_Memory_Next_State
-Created probe 4
 ncsim> run 1us
-Starting Simulation 
+ ------------------------- Starting Simulation ------------------------- 
+a is         55
+a is         83
 Ran until 1 US + 0
-ncsim> probe -create -shm ArbitrationSubModule_Testbench.uut.Bus_DataMem_Address ArbitrationSubModule_Testbench.uut.Bus_DataMem_In ArbitrationSubModule_Testbench.uut.Bus_DataMem_Read ArbitrationSubModule_Testbench.uut.Bus_DataMem_Ready ArbitrationSubModule_Testbench.uut.Bus_DataMem_Write
-Created probe 5
 ncsim> 

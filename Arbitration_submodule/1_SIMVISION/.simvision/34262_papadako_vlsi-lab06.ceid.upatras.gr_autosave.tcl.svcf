@@ -420,7 +420,7 @@ set id [waveform add -signals  {
 waveform format $id -bgcolor #4e0000
 set id [waveform add -cdivider divider]
 
-waveform xview limits 0 1193.798ns
+waveform xview limits 0 2000ns
 waveform grid -state y -start 0 -delta 0
 
 #

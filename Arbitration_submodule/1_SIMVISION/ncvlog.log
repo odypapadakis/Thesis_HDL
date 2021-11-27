@@ -2,5 +2,52 @@ ncvlog(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-ncvlog: Memory Usage - 21.3M program + 26.3M data = 47.6M total
-ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.0s, 100.0% cpu)
+			#5 tb_Bus_InstMem_Ready = 0'b0;
+			                          |
+ncvlog: *W,MAXBSZ (Pseudo_Memory.v,36|29): zero width prefix to based number ignored [2.5(IEEE)].
+(`include file: Pseudo_Memory.v line 36, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+always@(posedge clk or posedge reset) 
+                  |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,19|18): 'clk': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+always@(posedge clk or posedge reset) 
+                                   |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,19|35): 'reset': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+	if(reset)
+	       |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,20|8): 'reset': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			#5 tb_Bus_InstMem_Ready = 0'b0;
+			                      |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,36|25): 'tb_Bus_InstMem_Ready': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			#5 tb_Bus_InstMem_In = 32'dx;
+			                   |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,39|22): 'tb_Bus_InstMem_In': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			if( (tb_Bus_InstMem_Read == 1'b1) )
+			                       |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,42|26): 'tb_Bus_InstMem_Read': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			#20 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
+			                    |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,52|23): 'tb_Bus_InstMem_In': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			#20 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
+			                                             |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,52|48): 'tb_Bus_InstMem_Address': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			#35 tb_Bus_InstMem_Ready = 1'b1;
+			                       |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,55|26): 'tb_Bus_InstMem_Ready': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			if(tb_Bus_InstMem_Read == 1'b0)
+			                     |
+ncvlog: *E,UNDIDN (Pseudo_Memory.v,58|24): 'tb_Bus_InstMem_Read': undeclared identifier [12.5(IEEE)].
+(`include file: Pseudo_Memory.v line 77, file: /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v line 2)
+			#(5*m) tb_Bus_DataMem_Ready = 0'b0;
+			                              |
+ncvlog: *W,MAXBSZ (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,347|33): zero width prefix to based number ignored [2.5(IEEE)].
+ncvlog: Memory Usage - 21.3M program + 28.1M data = 49.4M total
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 39.7% cpu)

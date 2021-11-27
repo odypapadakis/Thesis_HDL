@@ -1,5 +1,6 @@
 `timescale 1ns / 1ns   // <time_unit> / <time_precision>
-
+//`include "Pseudo_Memory.v"
+//`include "ArbitrationSubModule_Testbench_Parameters.v"
 // This is a testbench to test the functionality of the arbitration module.
 
 /* Int this testbench, we are simulating 
@@ -17,6 +18,8 @@
 */
 
 module ArbitrationSubModule_Testbench;
+
+integer m; // This is a multipler for the delays.
 
 
 reg heartbeat;
@@ -268,10 +271,10 @@ begin
 	Pseudo_I_Memory_State_Read_HIGH:
 		begin
 			// Add 4 to the Address and return it as data
-			#5 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
+			#20 tb_Bus_InstMem_In = tb_Bus_InstMem_Address + 32'd4;
 
 			// Raise the ready signal, to inform that the data being served is valid
-			#15 tb_Bus_InstMem_Ready = 1'b1;
+			#35 tb_Bus_InstMem_Ready = 1'b1;
 
 			// When the read signal goes low move on to Idle
 			if(tb_Bus_InstMem_Read == 1'b0)
@@ -330,7 +333,7 @@ begin
 
 			// If there is a request  and memory is ready
 			if( (tb_D_Bus_RQ == 1'b1)  && (tb_Bus_DataMem_Ready == 1'b0) )  
-				#10 Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_RQ_HIGH;
+				#(10*m) Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_RQ_HIGH;
 			else
 				Pseudo_D_Arbiter_Next_State = Pseudo_D_Arbiter_State_Idle;
 
@@ -338,7 +341,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_D_Arbiter_State_RQ_HIGH:
 		begin
-			#10  tb_D_Bus_GRANT = 1'b1;
+			#(10*m)   tb_D_Bus_GRANT = 1'b1;
 
 			if(tb_D_Bus_RQ == 1'b0)
 				begin
@@ -377,6 +380,7 @@ begin
 end
 
 
+
 // Pseudo Data memory States
 reg [1:0] Pseudo_D_Memory_Current_State,Pseudo_D_Memory_Next_State ;
 
@@ -406,14 +410,14 @@ begin
 		begin
 			
 			// Show that the data is not valid 
-			#5 tb_Bus_DataMem_Ready = 0'b0;
+			#(5*m) tb_Bus_DataMem_Ready = 0'b0;
 
 			// Idle 
-			#5 tb_Bus_DataMem_In = 32'dx;
+			#(5*m) tb_Bus_DataMem_In = 32'dx;
 
 			// When the read signal goes high
 			if( (tb_Bus_DataMem_Read == 1'b1) )
-				#5 Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Read_HIGH;
+				#(5*m) Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Read_HIGH;
 			else
 				Pseudo_D_Memory_Next_State = Pseudo_D_Memory_State_Idle;
 
@@ -422,10 +426,10 @@ begin
 	Pseudo_D_Memory_State_Read_HIGH:
 		begin
 			// Add 6 to the Address and return it as data
-			#5 tb_Bus_DataMem_In = tb_Bus_DataMem_Address + 32'd6;
+			#(5*m) tb_Bus_DataMem_In = tb_Bus_DataMem_Address + 32'd6;
 
 			// Raise the ready signal, to inform that the data being served is valid
-			#15 tb_Bus_DataMem_Ready = 1'b1;
+			#(15*m) tb_Bus_DataMem_Ready = 1'b1;
 
 			// When the read signal goes low move on to Idle
 			if(tb_Bus_DataMem_Read == 1'b0)
@@ -444,7 +448,6 @@ begin
 	endcase	
 
 end
-
 
 
 
@@ -499,11 +502,11 @@ begin
 	Pseudo_Processor_State_Raised_RQ: 	
 		begin
 		// For the instruction Bus
-		#5 tb_P_InstMem_Address		= 29'h004;
-		#5 tb_P_InstMem_Read		= 1'b1; 
+		//#5 tb_P_InstMem_Address		= 29'h004;
+		//#5 tb_P_InstMem_Read		= 1'b1; 
 
 		// For the Data Bus
-		//tb_P_DataMem_Read 		= 1'b0;
+		#(5*m)tb_P_DataMem_Read 		= 1'b1;
 		//tb_P_DataMem_Write 		= 4'd0;
 
 		if (tb_Bus_DataMem_Ready == 1'b1 )
@@ -515,7 +518,7 @@ begin
 //------------------------------------------------------------------------------------------
 	Pseudo_Processor_State_Read_Data:
 		begin
-			#250;
+			
 
 			#50 tb_P_InstMem_Read		= 1'b1;
 
@@ -546,17 +549,18 @@ end
 initial		// Initialization initial block 
 	begin
 		$display(" ------------------------- Starting Simulation ------------------------- ");
-
+		m=5;
 		a = 32'd55;
-		$display("a is %d",a);
+		$display(" Set a is %d",a);
 
 
 
 
-		a ={$urandom_range(50,100)};
-		$display("a is %d",a);
-
-
+//		a ={$urandom_range(50,100)};
+//		$display("Randomized a is %d",a);
+//
+//		heartbeat = 1;
+//		#a;
 		heartbeat = 0;
 		clk = 0;
 		reset = 1;
@@ -565,12 +569,12 @@ initial		// Initialization initial block
 
 
 
-		tb_P_DataMem_Address 	= 29'h0001;
-		tb_P_DataMem_Out 		= 32'h0001;
+		//tb_P_DataMem_Address 	= 29'h0001;
+		//tb_P_DataMem_Out 		= 32'h0001;
 
 
 		// System is running
-		# 45 reset = 0;
+		# 50 reset = 0;
 
 
 

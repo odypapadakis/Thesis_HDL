@@ -7,17 +7,6 @@ include $CDS_INST_DIR/tools/inca/files/hdl.var
 ncupdate: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
-ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-			#5 tb_Bus_InstMem_Ready = 0'b0;
-			                          |
-ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,257|29): zero width prefix to based number ignored [2.5(IEEE)].
-			#(5*m) tb_Bus_DataMem_Ready = 0'b0;
-			                              |
-ncvlog: *W,MAXBSZ (./ArbitrationSubModule_Testbench.v,411|33): zero width prefix to based number ignored [2.5(IEEE)].
-ncvlog: Memory Usage - 21.3M program + 27.9M data = 49.2M total
-ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 24.9% cpu)
-include $CDS_INST_DIR/tools/inca/files/hdl.var
-|
 ncelab: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
@@ -29,18 +18,6 @@ ncsim>
 ncsim> # Restoring simulation environment...
 ncsim> input -quiet .reinvoke.sim
 ncsim> file delete .reinvoke.sim
-ncsim> run 2us
- ------------------------- Starting Simulation ------------------------- 
- Set a is         55
-Ran until 2 US + 0
-ncsim> run 2us
-Ran until 4 US + 0
-ncsim> run 2us
-Ran until 6 US + 0
-ncsim> run 2us
-Ran until 8 US + 0
-ncsim> reset
-Loaded snapshot worklib.ArbitrationSubModule_Testbench:module
 ncsim> run 2us
  ------------------------- Starting Simulation ------------------------- 
  Set a is         55

@@ -2,5 +2,11 @@ ncvlog(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncvlog: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-ncvlog: Memory Usage - 21.3M program + 26.3M data = 47.6M total
+			#5 tb_Bus_InstMem_Ready = 0'b0;
+			                          |
+ncvlog: *W,MAXBSZ (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,258|29): zero width prefix to based number ignored [2.5(IEEE)].
+			#(5*m) tb_Bus_DataMem_Ready = 0'b0;
+			                              |
+ncvlog: *W,MAXBSZ (/localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v,413|33): zero width prefix to based number ignored [2.5(IEEE)].
+ncvlog: Memory Usage - 21.3M program + 27.4M data = 48.7M total
 ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.0s, 100.0% cpu)

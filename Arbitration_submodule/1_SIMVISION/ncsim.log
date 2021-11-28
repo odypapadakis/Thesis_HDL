@@ -2,24 +2,11 @@ ncsim(64): 15.20-s038: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
 include $CDS_INST_DIR/tools/inca/files/hdl.var
 |
 ncsim: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-include $CDS_INST_DIR/tools/inca/files/hdl.var
-|
-ncupdate: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-include $CDS_INST_DIR/tools/inca/files/hdl.var
-|
-ncelab: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
-include $CDS_INST_DIR/tools/inca/files/hdl.var
-|
-ncvlog_cg: *W,DLHPTH (./hdl.var,2): hdl.var invalid path '/eda/cadence/2017-18/RHELx86/IC_6.1.7.715/../tools/inca/files/hdl.var' (hdl.var command ignored).
 
 -------------------------------------
 Relinquished control to SimVision...
 ncsim> 
-ncsim> # Restoring simulation environment...
-ncsim> input -quiet .reinvoke.sim
-ncsim> file delete .reinvoke.sim
-ncsim> run 2us
- ------------------------- Starting Simulation ------------------------- 
- Set a is         55
-Ran until 2 US + 0
-ncsim> 
+ncsim> ^C
+ncsim> exit
+ncsim: Memory Usage - 38.5M program + 56.4M data = 94.9M total (94.9M Peak)
+ncsim: CPU Usage - 0.4s system + 0.2s user = 0.6s total (33.4s, 1.7% cpu)

@@ -1,0 +1,48 @@
+csi-ncsim - CSI: Command line:
+ncsim
+    -gui
+    -cdslib /localdisk/users/papadako/diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/cds.lib
+    -logfile ncsim.log
+    -errormax 15
+    -status
+    worklib.ArbitrationSubModule_Testbench:module
+    -tcl
+    -update
+
+csi-ncsim - CSI: *F,INTERR: INTERNAL EXCEPTION
+Observed simulation time : 4 US + 0
+-----------------------------------------------------------------
+The tool has encountered an unexpected condition and must exit.
+Contact Cadence Design Systems customer support about this
+problem and provide enough information to help us reproduce it,
+including the logfile that contains this error message.
+  TOOL:	ncsim(64)	15.20-s038
+  HOSTNAME: vlsi-lab06.ceid.upatras.gr
+  OPERATING SYSTEM: Linux 2.6.32-754.35.1.el6.x86_64 #1 SMP Sat Nov 7 12:42:14 UTC 2020 x86_64
+  MESSAGE: sv_seghandler - trapno -1 addr(0x30)
+-----------------------------------------------------------------
+
+csi-ncsim - CSI: Cadence Support Investigation, recording details
+User Code in function: <unavailable> offset -65524
+User Code in function: <unavailable> offset -65536
+Verilog Syntax Tree: wire declaration (VST_D_WIRE) in module worklib.ArbitrationSubModule_Testbench:module (VST)
+	File: /users/papadako/Desktop/Link to diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v, line 95, position 17
+	Scope: ArbitrationSubModule_Testbench
+	Decompile: logic tb_I_Bus_RQ
+	Source  : 		wire	tb_I_Bus_RQ;			 
+	Position: 		    	          ^
+Verilog Syntax Tree: wire declaration (VST_D_WIRE) in module worklib.ArbitrationSubModule_Testbench:module (VST)
+	File: /users/papadako/Desktop/Link to diplomatiki/A_HDL/Arbitration_submodule/1_SIMVISION/ArbitrationSubModule_Testbench.v, line 95, position 17
+	Scope: ArbitrationSubModule_Testbench
+	Decompile: logic tb_I_Bus_RQ
+	Source  : 		wire	tb_I_Bus_RQ;			 
+	Position: 		    	          ^
+Intermediate File: string (IF_STRING) in module worklib.ArbitrationSubModule_Testbench:module (VST)
+	Decompile: uut
+Intermediate File: string (IF_STRING) in module worklib.ArbitrationSubModule:module (VST)
+	Decompile: P_InstMem_Ready
+Intermediate File: string (IF_STRING) in module worklib.ArbitrationSubModule_Testbench:module (VST)
+	Decompile: tb_P_InstMem_Read
+User Code in function: <unavailable> offset -65535
+User Code in function: <unavailable> offset -53248
+csi-ncsim - CSI: investigation complete took 0.015 secs, send this file to Cadence Support

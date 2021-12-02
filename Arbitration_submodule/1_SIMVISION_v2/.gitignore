@@ -1,1 +1,5 @@
 /INCA_libs
+hdl.var
+*.log
+*.key
+*.diag

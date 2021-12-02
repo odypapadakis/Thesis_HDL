@@ -3,3 +3,6 @@ hdl.var
 *.log
 *.key
 *.diag
+*.shm
+*.dd
+*.dd.bak

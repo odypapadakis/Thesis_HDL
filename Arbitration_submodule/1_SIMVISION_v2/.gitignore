@@ -8,3 +8,4 @@ hdl.var
 *.dd.bak
 *.simvision
 cds.lib
+.gitignore~

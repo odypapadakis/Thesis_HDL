@@ -6,3 +6,5 @@ hdl.var
 *.shm
 *.dd
 *.dd.bak
+*.simvision
+cds.lib

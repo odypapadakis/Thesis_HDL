@@ -9,3 +9,4 @@ hdl.var
 *.simvision
 cds.lib
 .gitignore~
+*.err
